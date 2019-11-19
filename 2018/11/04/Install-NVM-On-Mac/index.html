@@ -45,18 +45,18 @@
   };
 </script>
 
-  <meta name="description" content="Nginx的安裝與基本操作system: ubuntu 16.04安裝nginx12sudo apt-get updatesudo apt-get install nginx安裝完後可以查看nginx的狀況1sudo systemctl status nginx如果狀態是active，那就表示nginx服務成功運行">
-<meta name="keywords" content="ubuntu,Nginx">
+  <meta name="description" content="安裝並使用NVMnvm是node.js的版本管理器，因為使用不同的專案可能會需要不同的node.js版本，透過nvm我們可以很方便的安裝與切換不同版本的node.js##安裝前準備安裝nvm前，我們必須先將已經裝在電腦上的node.js刪除如果之前是使用homebrew安裝的，只要在終端機中輸入以下指令就可以刪除">
+<meta name="keywords" content="node.js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Nginx的安裝與基本操作">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2018&#x2F;10&#x2F;15&#x2F;install_nginx&#x2F;index.html">
+<meta property="og:title" content="在Mac上安裝NVM">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2018&#x2F;11&#x2F;04&#x2F;Install-NVM-On-Mac&#x2F;index.html">
 <meta property="og:site_name" content="KenLee">
-<meta property="og:description" content="Nginx的安裝與基本操作system: ubuntu 16.04安裝nginx12sudo apt-get updatesudo apt-get install nginx安裝完後可以查看nginx的狀況1sudo systemctl status nginx如果狀態是active，那就表示nginx服務成功運行">
+<meta property="og:description" content="安裝並使用NVMnvm是node.js的版本管理器，因為使用不同的專案可能會需要不同的node.js版本，透過nvm我們可以很方便的安裝與切換不同版本的node.js##安裝前準備安裝nvm前，我們必須先將已經裝在電腦上的node.js刪除如果之前是使用homebrew安裝的，只要在終端機中輸入以下指令就可以刪除">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2018-10-17T07:33:36.573Z">
+<meta property="og:updated_time" content="2019-11-19T12:45:57.644Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2018/10/15/install_nginx/">
+<link rel="canonical" href="http://yoursite.com/2018/11/04/Install-NVM-On-Mac/">
 
 
 <script id="page-configurations">
@@ -70,7 +70,7 @@
   };
 </script>
 
-  <title>Nginx的安裝與基本操作 | KenLee</title>
+  <title>在Mac上安裝NVM | KenLee</title>
   
 
 
@@ -179,7 +179,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/install_nginx/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/04/Install-NVM-On-Mac/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -192,7 +192,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Nginx的安裝與基本操作
+          在Mac上安裝NVM
         </h1>
 
         <div class="post-meta">
@@ -202,14 +202,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2018-10-15 18:06:19" itemprop="dateCreated datePublished" datetime="2018-10-15T18:06:19+08:00">2018-10-15</time>
+              <time title="Created: 2018-11-04 00:00:00" itemprop="dateCreated datePublished" datetime="2018-11-04T00:00:00+08:00">2018-11-04</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-10-17 15:33:36" itemprop="dateModified" datetime="2018-10-17T15:33:36+08:00">2018-10-17</time>
+                <time title="Modified: 2019-11-19 20:45:57" itemprop="dateModified" datetime="2019-11-19T20:45:57+08:00">2019-11-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -217,8 +217,8 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">Nginx</span>
+                  <a href="/categories/node-js/" itemprop="url" rel="index">
+                    <span itemprop="name">node.js</span>
                   </a>
                 </span>
             </span>
@@ -234,42 +234,46 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Nginx的安裝與基本操作"><a href="#Nginx的安裝與基本操作" class="headerlink" title="Nginx的安裝與基本操作"></a>Nginx的安裝與基本操作</h1><p>system:<br> ubuntu 16.04</p><h2 id="安裝nginx"><a href="#安裝nginx" class="headerlink" title="安裝nginx"></a>安裝nginx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install nginx</span><br></pre></td></tr></table></figure><p>安裝完後可以查看nginx的狀況</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status nginx</span><br></pre></td></tr></table></figure><p>如果狀態是active，那就表示nginx服務成功運行</p><a id="more"></a>
+        <h1 id="安裝並使用NVM"><a href="#安裝並使用NVM" class="headerlink" title="安裝並使用NVM"></a>安裝並使用NVM</h1><p>nvm是node.js的版本管理器，因為使用不同的專案可能會需要不同的node.js版本，透過nvm我們可以很方便的安裝與切換不同版本的node.js<br>##安裝前準備<br>安裝nvm前，我們必須先將已經裝在電腦上的node.js刪除<br>如果之前是使用homebrew安裝的，只要在終端機中輸入以下指令就可以刪除</p><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew uninstall node</span><br></pre></td></tr></table></figure>
+
+<p>如果當初是使用官網的pkg安裝包，則是輸入下列指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo rm -rf /usr/local/&#123;bin/&#123;node,npm&#125;,lib/node_modules/npm,lib/node,share/man/*/node.*&#125;</span><br></pre></td></tr></table></figure>
+
+<p>##使用Curl安裝nvm</p>
+<p>安裝方法主要有兩種，一種是透過homebrew安裝，另外一種是使用curl安裝， 這邊採用curl安裝，因為之前我使用homebrew安裝的之後，nvm都不是很正常的工作，切換版本的時候也會出現<code>nvm is not compatible with the npm config &quot;prefix&quot; option: currently set to &quot;/usr/local&quot;
+Run</code>npm config delete prefix<code>or</code>nvm use –delete-prefix v5.7.1 –silent<code>to unset it.</code>的訊息，採用curl就沒什麼問題</p>
+<p>根據nvm在<a href="https://github.com/creationix/nvm#install-script" target="_blank" rel="noopener">github</a>的說明，在終端機中輸入，因為版本會隨著時間的不同而有所更新，安裝前請到github中查看最新安裝指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash</span><br></pre></td></tr></table></figure>
+<p>接著輸入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export NVM_DIR=&quot;$&#123;XDG_CONFIG_HOME/:-$HOME/.&#125;nvm&quot;</span><br><span class="line">[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot; # This loads nvm</span><br></pre></td></tr></table></figure>
+
+<p>之後輸入nvm -v，應該就可以使用了，如果出現找不到command，那就表示電腦或許沒有<code>.bash_profile file</code>的檔案</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm: command not found</span><br></pre></td></tr></table></figure>
+
+<p>可以在終端機中輸入以下指令，打開.bash_profile</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~ </span><br><span class="line">open .bash_profile</span><br></pre></td></tr></table></figure>
+<p>接著在文件底下加入以下文字並存檔</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br><span class="line">export NVM_DIR=&quot;$HOME/.nvm&quot;</span><br><span class="line">[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot;  # This loads nvm</span><br><span class="line">[ -s &quot;$NVM_DIR/bash_completion&quot; ] &amp;&amp; \. &quot;$NVM_DIR/bash_completion&quot;  # This loads nvm bash_completion</span><br></pre></td></tr></table></figure>
+
+<p>存檔完之後輸入下列指令重新載入<code>.bash_profile</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source .bash_profile</span><br></pre></td></tr></table></figure>
+
+<p>再次輸入<code>nvm -v</code>就可以使用了</p>
+<p>##使用NVM</p>
+<p>在安裝完nvm後，我們電腦上的node就可以統一透過nvm來管理<br>安裝node之前可以先透過</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm ls-remote</span><br></pre></td></tr></table></figure>
+<p>這個指令來查看現在有哪些版本的node<br>如果要安裝8.3.1版本的node，就可以輸入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install 8.3.1</span><br></pre></td></tr></table></figure>
+
+<p>如果我們想要切換到9.1.2版本的node，就可以使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm use 9.1.2</span><br></pre></td></tr></table></figure>
 
 
 
 
 
-
-<h2 id="設定reverse-proxy"><a href="#設定reverse-proxy" class="headerlink" title="設定reverse proxy"></a>設定reverse proxy</h2><p>假設今天我們有一個<code>www.test.com</code>的網域，還有一個利用express的後端應用在Localhost、port 3000的位置，想要讓使用者連上<code>www.test.com.tw</code>的時候可以連接上架設的後端應用，就可以利用nginx做reverse proxy，讓外部連入指定網域的時候經由預設的port 80從新導向到本機端的port 3000上</p>
-<p>首先進入/etc/nginx/conf.d裡面建立一個新的nginx.conf</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/nginx/conf.d  </span><br><span class="line">vi nginx.conf</span><br></pre></td></tr></table></figure>
-<p>接著進行編輯</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server &#123;  </span><br><span class="line">  listen 80; </span><br><span class="line">  #監聽port 80</span><br><span class="line">  server_name www.test.com;</span><br><span class="line">  #透過www.test.com網域連接進來</span><br><span class="line">  location / &#123;</span><br><span class="line">    proxy_pass 127.0.0.1:3000;</span><br><span class="line">    #把位置重新導向到127.0.0.1:3000的位置</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>編輯完後按ESC，再按<code>:wq</code>寫入檔案後離開</p>
-<p>重新執行nginx服務</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl reload nginx</span><br></pre></td></tr></table></figure>
-
-<h2 id="架設靜態網頁"><a href="#架設靜態網頁" class="headerlink" title="架設靜態網頁"></a>架設靜態網頁</h2><p>nginx也可以直接拿來架設靜態網頁，並且搭配不同網域進行轉址，假設今天的域名是<code>www.blog.test.com</code></p>
-<p>首先先建立一個資料夾</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /www</span><br></pre></td></tr></table></figure>
-
-<p>然後把你的靜態網站丟進去</p>
-<p>接著一樣開啟/etc/nginx/conf.d裡面的nginx.conf</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/nginx/conf.d  </span><br><span class="line">vi nginx.conf</span><br></pre></td></tr></table></figure>
-<p>將這個貼入設定檔中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  server_name www.blog.test.com; </span><br><span class="line">  #外部連進來的域名</span><br><span class="line">  root /www; </span><br><span class="line">  #靜態網頁檔案放置的路徑</span><br><span class="line">  index index.html;</span><br><span class="line">  #顯示的網頁</span><br><span class="line">  location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|js|pdf|txt)&#123;</span><br><span class="line">    root /www;</span><br><span class="line">  &#125; </span><br><span class="line">  #會訪問的靜態網頁</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果裡面已經有上面應用的設定了，則可以貼在下方像這樣</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">server&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>編輯完後按ESC，再按<code>:wq</code>寫入檔案後離開</p>
-<p>重新執行nginx服務</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl reload nginx</span><br></pre></td></tr></table></figure>
-
-<p>這樣就可以透過<code>www.blog.test.com</code>這個網域去訪問你放在/www中的靜態網頁了</p>
-<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04" target="_blank" rel="noopener">How To Install Nginx on Ubuntu 16.04</a><br><a href="https://oranwind.org/-node-js-ubuntu-shang-nginx-an-zhuang-yu-she-ding/" target="_blank" rel="noopener">ubuntu 上 Nginx 安裝與設定</a><br><a href="https://blog.hellojcc.tw/2018/05/02/setup-https-with-letsencrypt-on-nginx/" target="_blank" rel="noopener">設定 Let’s Encrypt HTTPS nginx certbot 自動更新 教學</a><br><a href="https://segmentfault.com/a/1190000010487262" target="_blank" rel="noopener">拿Nginx 部署你的靜態網頁</a><br><a href="https://ithelp.ithome.com.tw/articles/10188498" target="_blank" rel="noopener">俄羅斯不愧是戰鬥民族：nginx</a><br><a href="https://www.cnblogs.com/EasonJim/p/7806879.html" target="_blank" rel="noopener">Ubuntu 16.04安裝Nginx</a></p>
+<p><a href="https://github.com/creationix/nvm#install-script" target="_blank" rel="noopener">Node Version Manager</a><br><a href="http://bubkoo.com/2017/01/08/quick-tip-multiple-versions-node-nvm/" target="_blank" rel="noopener">使用 nvm 管理不同版本的 node 與 npm</a><br><a href="http://ikkkr.com/2018/07/23/nvm%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86-nvm-is-not-compatible-with-the-npm-config-prefix-option-%E9%94%99%E8%AF%AF/" target="_blank" rel="noopener">nvm安裝問題處理 nvm is not compatible with the npm config prefix option 錯誤</a><br><a href="https://juejin.im/post/5aea61c3f265da0ba5675e1a" target="_blank" rel="noopener">用nvm来管理node</a><br><a href="https://medium.com/@myread02/nvm-%E5%88%87%E6%8F%9B-node-%E7%89%88%E6%9C%AC%E9%AC%BC%E6%89%93%E7%89%86%E5%95%8F%E9%A1%8C-9c24fe0c627b" target="_blank" rel="noopener">nvm 切換 node 版本鬼打牆問題</a></p>
 
     </div>
 
@@ -279,24 +283,23 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
-              <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+              <a href="/tags/node-js/" rel="tag"># node.js</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2018/10/15/MongoDB_export_CSV/" rel="next" title="MongoDB匯出CSV">
-                  <i class="fa fa-chevron-left"></i> MongoDB匯出CSV
+                <a href="/2018/10/17/MongoDB_backup/" rel="next" title="MongoDB備份與還原">
+                  <i class="fa fa-chevron-left"></i> MongoDB備份與還原
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2018/10/16/MongoDB_auth/" rel="prev" title="開啟MongoDB認證權限">
-                  開啟MongoDB認證權限 <i class="fa fa-chevron-right"></i>
+                <a href="/2019/11/19/Install-Mongdb42-On-Ubuntu1804/" rel="prev" title="在Ubuntu 18.04上安裝MongoDB 4.2">
+                  在Ubuntu 18.04上安裝MongoDB 4.2 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -336,7 +339,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx的安裝與基本操作"><span class="nav-number">1.</span> <span class="nav-text">Nginx的安裝與基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝nginx"><span class="nav-number">1.1.</span> <span class="nav-text">安裝nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定reverse-proxy"><span class="nav-number">1.2.</span> <span class="nav-text">設定reverse proxy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架設靜態網頁"><span class="nav-number">1.3.</span> <span class="nav-text">架設靜態網頁</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝並使用NVM"><span class="nav-number">1.</span> <span class="nav-text">安裝並使用NVM</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
