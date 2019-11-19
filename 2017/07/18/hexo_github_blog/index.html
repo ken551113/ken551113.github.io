@@ -53,7 +53,7 @@
 <meta property="og:site_name" content="KenLee">
 <meta property="og:description" content="Hexo?Hexo 是一套簡潔的網誌框架，主要使用Markdown來編輯文章，搭配佈景主題只要幾秒鐘就可以產生靜態網頁，並且可以部署在github上面，使用上非常的簡單與快速。安裝在使用Hexo之前，我們必須準備環境配置，安裝Hexo依賴的node.js與git node.js官網 git 接著在terminal輸入">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2018-03-09T08:49:33.527Z">
+<meta property="og:updated_time" content="2019-11-19T12:24:10.176Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2017/07/18/hexo_github_blog/">
@@ -209,7 +209,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-03-09 16:49:33" itemprop="dateModified" datetime="2018-03-09T16:49:33+08:00">2018-03-09</time>
+                <time title="Modified: 2019-11-19 20:24:10" itemprop="dateModified" datetime="2019-11-19T20:24:10+08:00">2019-11-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,20 +254,21 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: git@github.com:&lt;username&gt;/&lt;username&gt;.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
 <p>編輯完之後保存</p>
 <h3 id="ssh設置"><a href="#ssh設置" class="headerlink" title="ssh設置"></a>ssh設置</h3><p>Github主要可以分為兩種方式進行部署，一個為https，一個為ssh，因為用ssh可以不用每次都輸入帳號密碼，節省非常多時間，所以本文利用的是ssh的方法</p>
-<h4 id="建立ssh-key"><a href="#建立ssh-key" class="headerlink" title="建立ssh key"></a>建立ssh key</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</span><br></pre></td></tr></table></figure>
-<p>接著會詢問是否儲存id_rsa，直接按下enter，進入下一步</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/c/Users/you/.ssh/id_rsa): [Press enter]</span><br></pre></td></tr></table></figure>
-<p>設定ssh key的密碼，這邊可以設置，若不需要就直接按enter跳過</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty for no passphrase): </span><br><span class="line">Enter same passphrase again:</span><br></pre></td></tr></table></figure>
-<p>設定金鑰代理，這個步驟可以讓你下次再執行git的時候不需要再輸入ssh key的自訂密碼</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ eval &quot;$(ssh-agent -s)&quot;</span><br></pre></td></tr></table></figure>
-<p>接著將key加入代理，並且儲存ssh key自訂的密碼</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-add -K ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+<h4 id="建立ssh-key"><a href="#建立ssh-key" class="headerlink" title="建立ssh key"></a>建立ssh key</h4><p>如果是第一次使用ssh key，本地端應該是沒有ssh的資料夾，所以我們這邊先建立資料夾並且給予權限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/.ssh</span><br><span class="line">chmod 700 ~/.ssh</span><br></pre></td></tr></table></figure>
 
-<p>複製金鑰內容</p>
+<p>接著輸入來產生ssh key</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
+
+<p>這邊會問說你想要的檔案名稱，如果沒需要特別設定，直接enter略過就好</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/c/Users/you/.ssh/id_rsa): [Press enter]</span><br></pre></td></tr></table></figure>
+
+<p>設定ssh key的密碼，若不需要就直接按enter跳過</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty for no passphrase): </span><br><span class="line">Enter same passphrase again:</span><br></pre></td></tr></table></figure>
+
+<p>產生完畢後，複製金鑰內容</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pbcopy &lt; ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
-<p>但不用輸入密碼這個動作只在當下的terminal內生效，如果關掉當前的terminal或者是重開機，就得再重新執行一次將key加入代理的動作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ eval &quot;$(ssh-agent -s)&quot;</span><br><span class="line">$ ssh-add -K ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+
 
 <h4 id="將ssh-key加入github當中"><a href="#將ssh-key加入github當中" class="headerlink" title="將ssh key加入github當中"></a>將ssh key加入github當中</h4><p>進入Github的settings=&gt;Add an SSH Key=&gt;New SSH Key，將SSH Key輸入後保存，即可完成SSH Key的設置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Title: 自訂，隨便都可以</span><br><span class="line">Key: 貼上剛剛複製的內容</span><br></pre></td></tr></table></figure>
