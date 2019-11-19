@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="陣列解構一般來說要將陣列中的值取出來，並且放置在其他變數中，都必須利用下變的方法123const nums = [ 1, 2]const first = nums[0]const second = nims[1]而在ES6中使用簡單一行就可以完成12const nums = [ 1, 2]const [ first, second] = nums">
+<meta name="keywords" content="ES6,javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6-解構賦值">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2018&#x2F;03&#x2F;12&#x2F;ES6_Destructuring_Assignment&#x2F;index.html">
+<meta property="og:site_name" content="KenLee">
+<meta property="og:description" content="陣列解構一般來說要將陣列中的值取出來，並且放置在其他變數中，都必須利用下變的方法123const nums = [ 1, 2]const first = nums[0]const second = nims[1]而在ES6中使用簡單一行就可以完成12const nums = [ 1, 2]const [ first, second] = nums">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2018-03-12T11:52:31.352Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2018/03/12/ES6_Destructuring_Assignment/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>ES6-解構賦值 | KenLee</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KenLee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/12/ES6_Destructuring_Assignment/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ken Lee">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KenLee">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ES6-解構賦值
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2018-03-12 18:05:25 / Modified: 19:52:31" itemprop="dateCreated datePublished" datetime="2018-03-12T18:05:25+08:00">2018-03-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="陣列解構"><a href="#陣列解構" class="headerlink" title="陣列解構"></a>陣列解構</h1><p>一般來說要將陣列中的值取出來，並且放置在其他變數中，都必須利用下變的方法</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [ <span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line"><span class="keyword">const</span> first = nums[<span class="number">0</span>]</span><br><span class="line"><span class="keyword">const</span> second = nims[<span class="number">1</span>]</span><br></pre></td></tr></table></figure><p>而在ES6中使用簡單一行就可以完成</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [ <span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line"><span class="keyword">const</span> [ first, second] = nums</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+<p>或是</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [ <span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line"><span class="keyword">let</span> first;</span><br><span class="line"><span class="keyword">let</span> second;</span><br><span class="line">[ first, second] = nums</span><br></pre></td></tr></table></figure>
+
+<h2 id="預設值"><a href="#預設值" class="headerlink" title="預設值"></a>預設值</h2><p>若需要再新增一個third的變數呢？因為目前nums裡面只有兩筆資料，第三筆就會為空，這時候我們就可以讓它在沒有對應值得時候，給予一個預設值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [ <span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line"><span class="keyword">const</span> [ first, second, third = <span class="number">3</span>] = nums</span><br></pre></td></tr></table></figure>
+<h2 id="忽略元素"><a href="#忽略元素" class="headerlink" title="忽略元素"></a>忽略元素</h2><p>若想忽略其中幾個元素呢？假設目前nums裡有三筆資料，只要拿第一筆跟第三筆的話，就可以利用忽略元素的方法忽略掉中間的元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">const</span> [ first, , third] = nums</span><br></pre></td></tr></table></figure>
+
+<h2 id="剩餘部分"><a href="#剩餘部分" class="headerlink" title="剩餘部分"></a>剩餘部分</h2><p>若要將陣列拆成一個變數與一個陣列，就可以透過剩餘部分來撰寫</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="keyword">const</span> [ first, ,...others] = nums</span><br><span class="line"><span class="comment">//first ===1</span></span><br><span class="line"><span class="comment">//other ===[2,3,4]</span></span><br></pre></td></tr></table></figure>
+<h2 id="變數轉換"><a href="#變數轉換" class="headerlink" title="變數轉換"></a>變數轉換</h2><p>過去若想要讓變數交換的話，通常都會利用以下方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">2</span></span><br><span class="line"><span class="keyword">let</span> tmp = a</span><br><span class="line">a = b</span><br><span class="line">b = tmp</span><br></pre></td></tr></table></figure>
+<p>在這邊可以利用下面的方法快速的將變數交換</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">2</span></span><br><span class="line">[a, b] = [b, a]</span><br></pre></td></tr></table></figure>
+
+<h1 id="物件解構"><a href="#物件解構" class="headerlink" title="物件解構"></a>物件解構</h1><p>陣列可以透過解構的方式將裡面的值取出來，物件也可以將屬性取出來，但物件是透過大括號{}的方式來進行，要記得解構的時候，提取的數值名稱，必須與物件屬性名稱相同</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> point = &#123;</span><br><span class="line">    x:<span class="number">150</span>,</span><br><span class="line">    y:<span class="number">150</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; x, y&#125; = point;</span><br></pre></td></tr></table></figure>
+<h2 id="預設值-1"><a href="#預設值-1" class="headerlink" title="預設值"></a>預設值</h2><p>若物件缺少屬性，就可以先用預設值替代</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> point = &#123;</span><br><span class="line">    y:<span class="number">150</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; x  = <span class="number">100</span>, y&#125; = point;</span><br></pre></td></tr></table></figure>
+<h2 id="指派新名稱"><a href="#指派新名稱" class="headerlink" title="指派新名稱"></a>指派新名稱</h2><p>可以將物件取出來的屬性重新命名，只有物件才有這個功能，陣列沒有</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> point = &#123;</span><br><span class="line">    x:<span class="number">150</span>,</span><br><span class="line">    y:<span class="number">150</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; <span class="attr">x</span>:px, <span class="attr">y</span>:py&#125; = point;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="解構函式參數"><a href="#解構函式參數" class="headerlink" title="解構函式參數"></a>解構函式參數</h1><p>一般要將物件傳入函式中並且利用物件中的屬性進行計算，都必須如下方所示</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> point=&#123; <span class="attr">x</span>:<span class="number">5</span>, <span class="attr">y</span>:<span class="number">2</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">distance</span>(<span class="params">point</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.sqrt(point.x*point.x+point.y*point.y)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>透過解構函式參數，可以直接在函式中將物件進行解構，將屬性值挑出來存入變數中，並且進行計算</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> point=&#123;<span class="attr">x</span>:<span class="number">5</span>,<span class="attr">y</span>:<span class="number">2</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">distance</span>(<span class="params">point</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; x, y&#125; = point</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.sqrt(x*x+y*y)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以在函式宣告時就在傳入值那邊進行解構</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> point=&#123;<span class="attr">x</span>:<span class="number">5</span>,<span class="attr">y</span>:<span class="number">2</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">distance</span>(<span class="params">&#123; x, y&#125;</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.sqrt(x*x+y*y)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>若傳入的物件中可能缺乏某個屬性，可以在解構時預設屬性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> point=&#123;<span class="attr">y</span>:<span class="number">2</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">distance</span>(<span class="params">&#123; x=<span class="number">0</span>, y&#125;</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.sqrt(x*x+y*y)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ES6/" rel="tag"># ES6</a>
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2018/03/12/ES6_arrow_function/" rel="next" title="ES6-箭頭函式">
+                  <i class="fa fa-chevron-left"></i> ES6-箭頭函式
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2018/03/12/ES6-String-Temlpate/" rel="prev" title="ES6-字串模板">
+                  ES6-字串模板 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#陣列解構"><span class="nav-number">1.</span> <span class="nav-text">陣列解構</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#預設值"><span class="nav-number">1.1.</span> <span class="nav-text">預設值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#忽略元素"><span class="nav-number">1.2.</span> <span class="nav-text">忽略元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#剩餘部分"><span class="nav-number">1.3.</span> <span class="nav-text">剩餘部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#變數轉換"><span class="nav-number">1.4.</span> <span class="nav-text">變數轉換</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#物件解構"><span class="nav-number">2.</span> <span class="nav-text">物件解構</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#預設值-1"><span class="nav-number">2.1.</span> <span class="nav-text">預設值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指派新名稱"><span class="nav-number">2.2.</span> <span class="nav-text">指派新名稱</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解構函式參數"><span class="nav-number">3.</span> <span class="nav-text">解構函式參數</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ken Lee"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Ken Lee</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ken551113" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ken551113" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/ken.lee.522" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;ken.lee.522" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ken Lee</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Firebase是什麼Firebase是一款Google提供的服務，可以串連iOS、android、Unity、Web APP，協助開發者在雲端快速建立後端服務，提供即時的雲端資料庫，開發者可以不用在開發後端的前提下，專心撰寫前端的程式，目前在一定使用額度下，提供免費服務安裝Firebase library">
+<meta name="keywords" content="NodeMCU,Firebase">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Nodemcu連接firebase資料庫">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2017&#x2F;08&#x2F;03&#x2F;nodemcu-firebase&#x2F;index.html">
+<meta property="og:site_name" content="KenLee">
+<meta property="og:description" content="Firebase是什麼Firebase是一款Google提供的服務，可以串連iOS、android、Unity、Web APP，協助開發者在雲端快速建立後端服務，提供即時的雲端資料庫，開發者可以不用在開發後端的前提下，專心撰寫前端的程式，目前在一定使用額度下，提供免費服務安裝Firebase library">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="http:&#x2F;&#x2F;i.imgur.com&#x2F;fE7O0uw.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i.imgur.com&#x2F;WqwcyfS.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i.imgur.com&#x2F;GqjeyvD.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i.imgur.com&#x2F;qwPk3tu.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i.imgur.com&#x2F;N4MGZhK.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i.imgur.com&#x2F;ATwVmlu.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i.imgur.com&#x2F;eJ4SGeu.gif">
+<meta property="og:updated_time" content="2018-03-08T18:30:04.535Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;i.imgur.com&#x2F;fE7O0uw.png">
+
+<link rel="canonical" href="http://yoursite.com/2017/08/03/nodemcu-firebase/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>使用Nodemcu連接firebase資料庫 | KenLee</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KenLee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/nodemcu-firebase/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ken Lee">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KenLee">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用Nodemcu連接firebase資料庫
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-08-03 15:53:43" itemprop="dateCreated datePublished" datetime="2017-08-03T15:53:43+08:00">2017-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-03-09 02:30:04" itemprop="dateModified" datetime="2018-03-09T02:30:04+08:00">2018-03-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NodeMCU/" itemprop="url" rel="index">
+                    <span itemprop="name">NodeMCU</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Firebase是什麼"><a href="#Firebase是什麼" class="headerlink" title="Firebase是什麼"></a>Firebase是什麼</h2><p>Firebase是一款Google提供的服務，可以串連iOS、android、Unity、Web APP，協助開發者在雲端快速建立後端服務，提供即時的雲端資料庫，開發者可以不用在開發後端的前提下，專心撰寫前端的程式，目前在一定使用額度下，提供免費服務</p><h2 id="安裝Firebase-library"><a href="#安裝Firebase-library" class="headerlink" title="安裝Firebase library"></a>安裝Firebase library</h2><a id="more"></a>
+<ol>
+<li>在arduino IDE裡面要安裝Firebase的library，我們需要先到Github上下載<a href="https://github.com/firebase/firebase-arduino" target="_blank" rel="noopener">檔案</a>，直接Download ZIP就可以了</li>
+<li>下載完畢之後，打開Arduino IDE&gt;Sketch&gt;Include Library&gt;Add .ZIP Library，接著選擇剛剛下載下來的ZIP檔就完成Library的安裝了</li>
+</ol>
+<h2 id="建立Firebase專案"><a href="#建立Firebase專案" class="headerlink" title="建立Firebase專案"></a>建立Firebase專案</h2><ol>
+<li><p>首先先進入<a href="https://firebase.google.com/" target="_blank" rel="noopener">Firebase</a>&gt;登入&gt;新建專案&gt;輸入專案名稱與地區之後建立專案<br><img src="http://i.imgur.com/fE7O0uw.png" alt="螢幕快照 2017-08-03 下午7.47.57"></p>
+</li>
+<li><p>接著點選overview旁邊的設定&gt;專案設定&gt;服務帳戶&gt;資料庫密鑰&gt;顯示並複製密鑰<br><img src="http://i.imgur.com/WqwcyfS.png" alt="螢幕快照 2017-08-03 下午7.49.42"><br><img src="http://i.imgur.com/GqjeyvD.png" alt="螢幕快照 2017-08-03 下午7.51.33"></p>
+</li>
+<li><p>回到剛剛上一步的視窗，點選左側的Database&gt;規則&gt;將”.read”跟”.write”都更改為true並發布，這樣可以使資料庫無需權限的被讀取跟寫入<br><img src="http://i.imgur.com/qwPk3tu.png" alt="螢幕快照 2017-08-03 下午7.53.40"></p>
+</li>
+<li><p>記錄Database的網址，如此範例就是<code>https://nodemcu-94c0b.firebaseio.com/</code><br><img src="http://i.imgur.com/N4MGZhK.png" alt="螢幕快照 2017-08-03 下午8.04.55"></p>
+<h2 id="arduino程式碼"><a href="#arduino程式碼" class="headerlink" title="arduino程式碼"></a>arduino程式碼</h2><p>將上一步記錄下來的網址與金鑰分別輸入firebaseURl、authCode，且更改ssid、password，並上傳程式碼即可</p>
+</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ESP8266WiFi.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;FirebaseArduino.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> ssid[] = <span class="string">"your SSID"</span>; <span class="comment">//Wifi SSID</span></span><br><span class="line"><span class="keyword">char</span> pass[] = <span class="string">"your password"</span>; <span class="comment">//Password</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> firebaseURl  <span class="meta-string">"firebaseURl"</span> <span class="comment">//輸入firebase資料庫的網址記得去掉前面的"http://"與最後面的"/"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> authCode  <span class="meta-string">"authCode"</span><span class="comment">//資料庫金鑰</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> led = D5;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setupFirebase</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Firebase.<span class="built_in">begin</span>(firebaseURl, authCode);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setupWifi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">WiFi</span>.<span class="built_in">begin</span>(ssid, pass);</span><br><span class="line">  <span class="built_in">Serial</span>.<span class="built_in">println</span>(<span class="string">"Hey i 'm connecting..."</span>);</span><br><span class="line">  <span class="keyword">while</span> (<span class="built_in">WiFi</span>.status() != WL_CONNECTED) &#123;</span><br><span class="line">    <span class="built_in">Serial</span>.<span class="built_in">println</span>(<span class="string">"."</span>);</span><br><span class="line">    <span class="built_in">delay</span>(<span class="number">500</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">Serial</span>.<span class="built_in">println</span>();</span><br><span class="line">  <span class="built_in">Serial</span>.<span class="built_in">println</span>(<span class="string">"I 'm connected and my IP address: "</span>);</span><br><span class="line">  <span class="built_in">Serial</span>.<span class="built_in">println</span>(<span class="built_in">WiFi</span>.<span class="built_in">localIP</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">pinMode</span>(led, <span class="literal">OUTPUT</span>);</span><br><span class="line">  <span class="built_in">Serial</span>.<span class="built_in">begin</span>(<span class="number">115200</span>);</span><br><span class="line">  setupWifi();</span><br><span class="line">  setupFirebase();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">String</span> path = <span class="string">"device/led"</span>; <span class="comment">//資料的路徑</span></span><br><span class="line">  FirebaseObject object = Firebase.<span class="built_in">get</span>(path); <span class="comment">//將資料抓進去一個firebase物件</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">bool</span> ledState = object.getBool(<span class="string">"state"</span>); <span class="comment">//抓取物件裡面"state"欄位的值</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">Serial</span>.<span class="built_in">println</span>(<span class="string">"ledState:"</span>);</span><br><span class="line">  <span class="built_in">Serial</span>.<span class="built_in">println</span>(ledState);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(led, ledState); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>##實際測試</p>
+<ol>
+<li>根據arduino的程式碼可以看到，我們要抓取led狀態的路徑是在device/led下的state，所以我們如下圖建立一個這樣的資料結構，記得先把值輸入false，預設是關閉的狀態<br><img src="http://i.imgur.com/ATwVmlu.png" alt="螢幕快照 2017-08-03 下午8.28.54"></li>
+<li>建立完畢之後，nodemcu抓到的資料就是false，如果我們把false改成true，led就會即時的被點亮了<br><img src="http://i.imgur.com/eJ4SGeu.gif" alt="20631572_1631616013517920_215347726_n"></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/NodeMCU/" rel="tag"># NodeMCU</a>
+              <a href="/tags/Firebase/" rel="tag"># Firebase</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2017/08/03/nodemcu_webserver/" rel="next" title="利用NodeMCU建立WebServer">
+                  <i class="fa fa-chevron-left"></i> 利用NodeMCU建立WebServer
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2017/08/04/processing_controlP5/" rel="prev" title="使用controlP5為Processing建立UI">
+                  使用controlP5為Processing建立UI <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Firebase是什麼"><span class="nav-number">1.</span> <span class="nav-text">Firebase是什麼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝Firebase-library"><span class="nav-number">2.</span> <span class="nav-text">安裝Firebase library</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立Firebase專案"><span class="nav-number">3.</span> <span class="nav-text">建立Firebase專案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#arduino程式碼"><span class="nav-number">4.</span> <span class="nav-text">arduino程式碼</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ken Lee"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Ken Lee</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ken551113" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ken551113" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/ken.lee.522" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;ken.lee.522" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ken Lee</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="需要的材料NodemcuArduino IDE 1.8.3建立Arduino編譯環境 首先先去官網下載Arduino IDE，目前的最新版本是1.8.3，要下載安裝版或者是ZIP版(免安裝)都可以 開啟Arduino，並進入Preferences(windows:File&amp;gt;Preferences,Mac:Arduino&amp;gt;Preferences) 進入Preferences之後，將htt">
+<meta name="keywords" content="NodeMCU,Arduino">
+<meta property="og:type" content="article">
+<meta property="og:title" content="建立NodeMCU的Arduino編譯環境">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2017&#x2F;08&#x2F;02&#x2F;start_nodemcu&#x2F;index.html">
+<meta property="og:site_name" content="KenLee">
+<meta property="og:description" content="需要的材料NodemcuArduino IDE 1.8.3建立Arduino編譯環境 首先先去官網下載Arduino IDE，目前的最新版本是1.8.3，要下載安裝版或者是ZIP版(免安裝)都可以 開啟Arduino，並進入Preferences(windows:File&amp;gt;Preferences,Mac:Arduino&amp;gt;Preferences) 進入Preferences之後，將htt">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="http:&#x2F;&#x2F;i.imgur.com&#x2F;6tq1Nbw.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i.imgur.com&#x2F;gdoPdzG.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i.imgur.com&#x2F;GMXk2Mv.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i.imgur.com&#x2F;eGjXsaN.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i.imgur.com&#x2F;pgaocxP.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i.imgur.com&#x2F;4Wbz74k.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i.imgur.com&#x2F;IZ3R5Pi.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i.imgur.com&#x2F;HLxJjZO.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i.imgur.com&#x2F;rBQaoLe.gif">
+<meta property="og:updated_time" content="2018-03-08T18:30:20.353Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;i.imgur.com&#x2F;6tq1Nbw.png">
+
+<link rel="canonical" href="http://yoursite.com/2017/08/02/start_nodemcu/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>建立NodeMCU的Arduino編譯環境 | KenLee</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KenLee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/02/start_nodemcu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ken Lee">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KenLee">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          建立NodeMCU的Arduino編譯環境
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-08-02 12:00:00" itemprop="dateCreated datePublished" datetime="2017-08-02T12:00:00+08:00">2017-08-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-03-09 02:30:20" itemprop="dateModified" datetime="2018-03-09T02:30:20+08:00">2018-03-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NodeMCU/" itemprop="url" rel="index">
+                    <span itemprop="name">NodeMCU</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="需要的材料"><a href="#需要的材料" class="headerlink" title="需要的材料"></a>需要的材料</h2><p>Nodemcu<br>Arduino IDE 1.8.3</p><h2 id="建立Arduino編譯環境"><a href="#建立Arduino編譯環境" class="headerlink" title="建立Arduino編譯環境"></a>建立Arduino編譯環境</h2><ol>
+<li>首先先去官網下載Arduino IDE，目前的最新版本是1.8.3，要下載安裝版或者是ZIP版(免安裝)都可以</li>
+<li>開啟Arduino，並進入Preferences(windows:File&gt;Preferences,Mac:Arduino&gt;Preferences)<br><img src="http://i.imgur.com/6tq1Nbw.png" alt="螢幕快照 2017-08-02 下午2.46.21"></li>
+<li>進入Preferences之後，將<code>http://arduino.esp8266.com/stable/package_esp8266com_index.json</code>輸入進Additional Boards Manager URLs，然後按ok<br><img src="http://i.imgur.com/gdoPdzG.png" alt="螢幕快照 2017-08-02 下午2.48.37"></li>
+<li>接著我們到Tools&gt;Board&gt;Boards Manager…，點選之後會進入Boards Manager，之後搜尋esp8266，再點選install，完成安裝之後關閉此視窗<br><img src="http://i.imgur.com/GMXk2Mv.png" alt="螢幕快照 2017-08-02 下午2.56.58"><br><img src="http://i.imgur.com/eGjXsaN.png" alt="螢幕快照 2017-08-02 下午2.57.34"></li>
+<li>打開Tools&gt;Board，可以發現選單裡面多了一個ESP8266 Moudules的區塊，接著我們直接選擇這次使用的NodeMCU 1.0<br><img src="http://i.imgur.com/pgaocxP.png" alt="螢幕快照 2017-08-02 下午3.07.52"></li>
+<li>到File&gt;Examples，可以看到也多了一個Examples for NodeMCU 1.0（要先完成上一個步驟才會出現），接著我們到ESP8266選擇Blink這個範例<br><img src="http://i.imgur.com/4Wbz74k.png" alt="螢幕快照 2017-08-02 下午3.08.43"></li>
+<li>開啟範例之後我們需要選擇板子的Port，所以我們到Tools&gt;Port選擇開發版的Port，如果沒有顯示Port，可能是沒有安裝驅動，要依造NodeMCU的Serial晶片來安裝驅動，如這次使用的是CH340就可以來這邊下載Windows|Mac<br><img src="http://i.imgur.com/IZ3R5Pi.png" alt="螢幕快照 2017-08-02 下午3.09.49"></li>
+<li>選擇完Port後，回到主畫面，直接選擇Upload，接著我們可以看到下方的狀況視窗出現上傳的畫面，到100%就表示完成上傳了<br><img src="http://i.imgur.com/HLxJjZO.png" alt="螢幕快照 2017-08-02 下午3.11.07"></li>
+<li>上傳完畢之後，板子會像這樣暗一秒，亮兩秒，就表示板子如我們範例所寫的樣子，順利工作中</li>
+</ol><a id="more"></a>
+
+<p><img src="http://i.imgur.com/rBQaoLe.gif" alt="20631518_1630403663639155_451847271_n"></p>
+<h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><p><a href="https://github.com/esp8266/Arduino" target="_blank" rel="noopener">https://github.com/esp8266/Arduino</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/NodeMCU/" rel="tag"># NodeMCU</a>
+              <a href="/tags/Arduino/" rel="tag"># Arduino</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2017/07/18/hexo_github_blog/" rel="next" title="使用Hexo+Github建立部落格">
+                  <i class="fa fa-chevron-left"></i> 使用Hexo+Github建立部落格
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2017/08/03/nodemc_osc/" rel="prev" title="透過OSC讓NodeMCU與Processing溝通">
+                  透過OSC讓NodeMCU與Processing溝通 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需要的材料"><span class="nav-number">1.</span> <span class="nav-text">需要的材料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立Arduino編譯環境"><span class="nav-number">2.</span> <span class="nav-text">建立Arduino編譯環境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">3.</span> <span class="nav-text">reference</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ken Lee"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Ken Lee</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ken551113" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ken551113" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/ken.lee.522" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;ken.lee.522" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ken Lee</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
