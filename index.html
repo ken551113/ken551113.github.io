@@ -200,7 +200,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2019-11-26 00:00:00 / Modified: 00:04:38" itemprop="dateCreated datePublished" datetime="2019-11-26T00:00:00+08:00">2019-11-26</time>
+              <time title="Created: 2019-11-26 00:00:00 / Modified: 00:18:03" itemprop="dateCreated datePublished" datetime="2019-11-26T00:00:00+08:00">2019-11-26</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -225,7 +225,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>今天試著把本來在spa專案中的vue awesome swiper放到nuxt上用，當初沒按照官方的路徑寫，因為我覺得我自己寫的也沒錯哈哈哈，走了很多彎路才成功，這邊來記錄一下</p><p>#安裝</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-awesome-swiper --save</span><br></pre></td></tr></table></figure><p>#加入pluging</p><p>在專案中的plugings資料夾建立一個vue-awesome-swiper.js的文件，並在裡面填入以下程式碼</p>
+          <p>今天試著把本來在spa專案中的vue awesome swiper放到nuxt上用，當初沒按照官方的路徑寫，因為我覺得我自己寫的也沒錯哈哈哈，走了很多彎路才成功，這邊來記錄一下</p><h1 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-awesome-swiper --save</span><br></pre></td></tr></table></figure><h1 id="加入pluging"><a href="#加入pluging" class="headerlink" title="加入pluging"></a>加入pluging</h1><p>在專案中的plugings資料夾建立一個vue-awesome-swiper.js的文件，並在裡面填入以下程式碼</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/11/26/Using-Vue-Awesome-Swiper-On-Nuxt/#more" rel="contents">
@@ -277,7 +277,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2019-11-26 00:00:00 / Modified: 00:14:53" itemprop="dateCreated datePublished" datetime="2019-11-26T00:00:00+08:00">2019-11-26</time>
+              <time title="Created: 2019-11-26 00:00:00 / Modified: 00:18:06" itemprop="dateCreated datePublished" datetime="2019-11-26T00:00:00+08:00">2019-11-26</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -302,7 +302,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>#在Nuxt專案中使用Bootstrap</p><p>因為Nuxt是基於Vue的SSR框架，所以引入bootstrap跟之前Vue的做法不一樣</p><p>首先在nuxt專案底層的nuxt.config.js中找到，以下程式碼</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">head: &#123;</span><br><span class="line">  title: process.env.npm_package_name || &apos;&apos;,</span><br><span class="line">  meta: [</span><br><span class="line">    &#123; charset: &apos;utf-8&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;viewport&apos;, content: &apos;width=device-width, initial-scale=1&apos; &#125;,</span><br><span class="line">    &#123; hid: &apos;description&apos;, name: &apos;description&apos;, content: process.env.npm_package_description || &apos;&apos; &#125;</span><br><span class="line">  ],</span><br><span class="line">  link: [</span><br><span class="line">    &#123; rel: &apos;icon&apos;, type: &apos;image/x-icon&apos;, href: &apos;/favicon.ico&apos; &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+          <h1 id="在Nuxt專案中使用Bootstrap"><a href="#在Nuxt專案中使用Bootstrap" class="headerlink" title="在Nuxt專案中使用Bootstrap"></a>在Nuxt專案中使用Bootstrap</h1><p>因為Nuxt是基於Vue的SSR框架，所以引入bootstrap跟之前Vue的做法不一樣</p><p>首先在nuxt專案底層的nuxt.config.js中找到，以下程式碼</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">head: &#123;</span><br><span class="line">  title: process.env.npm_package_name || &apos;&apos;,</span><br><span class="line">  meta: [</span><br><span class="line">    &#123; charset: &apos;utf-8&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;viewport&apos;, content: &apos;width=device-width, initial-scale=1&apos; &#125;,</span><br><span class="line">    &#123; hid: &apos;description&apos;, name: &apos;description&apos;, content: process.env.npm_package_description || &apos;&apos; &#125;</span><br><span class="line">  ],</span><br><span class="line">  link: [</span><br><span class="line">    &#123; rel: &apos;icon&apos;, type: &apos;image/x-icon&apos;, href: &apos;/favicon.ico&apos; &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/11/26/Using-Bootstrap-On-Nuxt/#more" rel="contents">
@@ -352,10 +352,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-11-25 00:00:00 / Modified: 21:40:51" itemprop="dateCreated datePublished" datetime="2019-11-25T00:00:00+08:00">2019-11-25</time>
+              <time title="Created: 2019-11-25 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-25T00:00:00+08:00">2019-11-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-26 00:18:07" itemprop="dateModified" datetime="2019-11-26T00:18:07+08:00">2019-11-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -379,7 +385,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>#安裝</p><p>先安裝node-sass跟sass-loader這兩個模組</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev node-sass sass-loader</span><br></pre></td></tr></table></figure><p>#使用</p><p>跟之前在vue專案中一樣，在style裡面指定lang為scss就可以了</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;style lang=&quot;scss&quot; scoped&gt;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+          <h1 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h1><p>先安裝node-sass跟sass-loader這兩個模組</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev node-sass sass-loader</span><br></pre></td></tr></table></figure><h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>跟之前在vue專案中一樣，在style裡面指定lang為scss就可以了</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;style lang=&quot;scss&quot; scoped&gt;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -421,10 +427,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-11-19 00:00:00 / Modified: 18:57:41" itemprop="dateCreated datePublished" datetime="2019-11-19T00:00:00+08:00">2019-11-19</time>
+              <time title="Created: 2019-11-19 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-19T00:00:00+08:00">2019-11-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-26 00:18:05" itemprop="dateModified" datetime="2019-11-26T00:18:05+08:00">2019-11-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -448,7 +460,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">system : </span><br><span class="line">ubuntu 18.04</span><br><span class="line">mongoDB 4.2</span><br></pre></td></tr></table></figure><p>因為最近開了一個新的server，作業系統是ubuntu 18.04，得重新安裝環境，就順便記錄一下安裝MongoDB 4.2的過程，感覺沒有之前安裝舊版那麼多步驟了</p><h2 id="1-安裝-MongoDB："><a href="#1-安裝-MongoDB：" class="headerlink" title="1.安裝 MongoDB："></a>1.安裝 MongoDB：</h2><p>###匯入 MongoDB 公開的 GPG 金鑰：</p>
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">system : </span><br><span class="line">ubuntu 18.04</span><br><span class="line">mongoDB 4.2</span><br></pre></td></tr></table></figure><p>因為最近開了一個新的server，作業系統是ubuntu 18.04，得重新安裝環境，就順便記錄一下安裝MongoDB 4.2的過程，感覺沒有之前安裝舊版那麼多步驟了</p><h2 id="1-安裝-MongoDB："><a href="#1-安裝-MongoDB：" class="headerlink" title="1.安裝 MongoDB："></a>1.安裝 MongoDB：</h2><h3 id="匯入-MongoDB-公開的-GPG-金鑰："><a href="#匯入-MongoDB-公開的-GPG-金鑰：" class="headerlink" title="匯入 MongoDB 公開的 GPG 金鑰："></a>匯入 MongoDB 公開的 GPG 金鑰：</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/11/19/Install-Mongdb42-On-Ubuntu1804/#more" rel="contents">
@@ -506,7 +518,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-25 21:37:12" itemprop="dateModified" datetime="2019-11-25T21:37:12+08:00">2019-11-25</time>
+                <time title="Modified: 2019-11-26 00:18:09" itemprop="dateModified" datetime="2019-11-26T00:18:09+08:00">2019-11-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -531,7 +543,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在Vue透過cli建立的專案中使用Bootstrap主要有兩種方式，一種是直接引用CDN，另外一種是透過NPM的方式安裝在本地端</p><p>#1.直接引用CDN<br>找到專案中public/index.html，直接在head裡面引用就行了</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot; integrity=&quot;sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T&quot; crossorigin=&quot;anonymous&quot;&gt;</span><br><span class="line">&lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.slim.min.js&quot; integrity=&quot;sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js&quot; integrity=&quot;sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js&quot; integrity=&quot;sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+          <p>在Vue透過cli建立的專案中使用Bootstrap主要有兩種方式，一種是直接引用CDN，另外一種是透過NPM的方式安裝在本地端</p><h1 id="1-直接引用CDN"><a href="#1-直接引用CDN" class="headerlink" title="1.直接引用CDN"></a>1.直接引用CDN</h1><p>找到專案中public/index.html，直接在head裡面引用就行了</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot; integrity=&quot;sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T&quot; crossorigin=&quot;anonymous&quot;&gt;</span><br><span class="line">&lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.slim.min.js&quot; integrity=&quot;sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js&quot; integrity=&quot;sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js&quot; integrity=&quot;sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/03/27/Using-Bootstrap-On-Vue/#more" rel="contents">
@@ -589,7 +601,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-19 20:45:57" itemprop="dateModified" datetime="2019-11-19T20:45:57+08:00">2019-11-19</time>
+                <time title="Modified: 2019-11-26 00:18:08" itemprop="dateModified" datetime="2019-11-26T00:18:08+08:00">2019-11-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -614,7 +626,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="安裝並使用NVM"><a href="#安裝並使用NVM" class="headerlink" title="安裝並使用NVM"></a>安裝並使用NVM</h1><p>nvm是node.js的版本管理器，因為使用不同的專案可能會需要不同的node.js版本，透過nvm我們可以很方便的安裝與切換不同版本的node.js<br>##安裝前準備<br>安裝nvm前，我們必須先將已經裝在電腦上的node.js刪除<br>如果之前是使用homebrew安裝的，只要在終端機中輸入以下指令就可以刪除</p>
+          <h1 id="安裝並使用NVM"><a href="#安裝並使用NVM" class="headerlink" title="安裝並使用NVM"></a>安裝並使用NVM</h1><p>nvm是node.js的版本管理器，因為使用不同的專案可能會需要不同的node.js版本，透過nvm我們可以很方便的安裝與切換不同版本的node.js</p><h2 id="安裝前準備"><a href="#安裝前準備" class="headerlink" title="安裝前準備"></a>安裝前準備</h2><p>安裝nvm前，我們必須先將已經裝在電腦上的node.js刪除<br>如果之前是使用homebrew安裝的，只要在終端機中輸入以下指令就可以刪除</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/11/04/Install-NVM-On-Mac/#more" rel="contents">
