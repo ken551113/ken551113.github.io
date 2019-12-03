@@ -175,6 +175,332 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/12/ES6-let/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ken Lee">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KenLee">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/03/12/ES6-let/" class="post-title-link" itemprop="url">ES6-let與const</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2018-03-12 17:59:26 / Modified: 19:53:14" itemprop="dateCreated datePublished" datetime="2018-03-12T17:59:26+08:00">2018-03-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>let與const可以視為取代var來定義變數與常數的方法，javascript過去只有var的語法，定義的也只有變數，而並沒有常數這個概念，並且不小心就會洩漏到全域。</p><p><code>var-作用域為函式作用域(function scope)</code></p><p><code>let、const-作用域為一個區塊作用域（block scope）</code></p><h1 id="let"><a href="#let" class="headerlink" title="let"></a>let</h1><p>過去我們若利用var在function中宣告變數，則此變數就會只存在function中，並不會變成全域變數，但若在if、while、for這些區塊語法中，就會變成全域變數。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/03/12/ES6-let/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/09/NexT%E4%B8%BB%E9%A1%8C%E8%A8%AD%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ken Lee">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KenLee">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/03/09/NexT%E4%B8%BB%E9%A1%8C%E8%A8%AD%E7%BD%AE/" class="post-title-link" itemprop="url">NexT主題設置</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-03-09 15:07:39" itemprop="dateCreated datePublished" datetime="2018-03-09T15:07:39+08:00">2018-03-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-03-12 20:00:28" itemprop="dateModified" datetime="2018-03-12T20:00:28+08:00">2018-03-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>主題的設定文件為themes/next/_config.yml，本文的設定都是藉由編輯此文件來進行主題的修改</p><h1 id="首頁的文章預覽"><a href="#首頁的文章預覽" class="headerlink" title="首頁的文章預覽"></a>首頁的文章預覽</h1><p>NexT首頁的文章預覽預設是展開全文，非常不方便瀏覽，透過更改_config.yml文件中的<code>auto_excerpt</code>，將<code>enable</code>的<code>false</code>改為<code>enable</code>就可以讓首頁的文章的摘要顯示為150個字，更改<code>length</code>這個參數，就可自訂摘要的字數</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/03/09/NexT%E4%B8%BB%E9%A1%8C%E8%A8%AD%E7%BD%AE/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/04/processing_controlP5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ken Lee">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KenLee">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/08/04/processing_controlP5/" class="post-title-link" itemprop="url">使用controlP5為Processing建立UI</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-08-04 23:28:52" itemprop="dateCreated datePublished" datetime="2017-08-04T23:28:52+08:00">2017-08-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-03-09 02:29:34" itemprop="dateModified" datetime="2018-03-09T02:29:34+08:00">2018-03-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NodeMCU/" itemprop="url" rel="index">
+                    <span itemprop="name">NodeMCU</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>上一篇使用了Processing透過OSC控制NodeMCU，而控制的方法是使用鍵盤，並沒有使用任何的UI來控制，這一篇會為Processing的控制程式建立UI，並使用UI透過OSC來控制NodeMCU。</p><h2 id="Arduino"><a href="#Arduino" class="headerlink" title="Arduino:"></a>Arduino:</h2><p>在arduino這邊，我們修改了上次的程式碼，新增了兩個外部的LED，一個為數位控制，另一個為類比控制，然後在OSC的部分，我們新增了一個新的函式<code>led2</code>來將從Processing端收到要類比控制的變數存進inputAnalog中，再進而去控制LED的亮暗程度。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2017/08/04/processing_controlP5/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/nodemcu-firebase/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ken Lee">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KenLee">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/08/03/nodemcu-firebase/" class="post-title-link" itemprop="url">使用Nodemcu連接firebase資料庫</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-08-03 15:53:43" itemprop="dateCreated datePublished" datetime="2017-08-03T15:53:43+08:00">2017-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-03-09 02:30:04" itemprop="dateModified" datetime="2018-03-09T02:30:04+08:00">2018-03-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NodeMCU/" itemprop="url" rel="index">
+                    <span itemprop="name">NodeMCU</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Firebase是什麼"><a href="#Firebase是什麼" class="headerlink" title="Firebase是什麼"></a>Firebase是什麼</h2><p>Firebase是一款Google提供的服務，可以串連iOS、android、Unity、Web APP，協助開發者在雲端快速建立後端服務，提供即時的雲端資料庫，開發者可以不用在開發後端的前提下，專心撰寫前端的程式，目前在一定使用額度下，提供免費服務</p><h2 id="安裝Firebase-library"><a href="#安裝Firebase-library" class="headerlink" title="安裝Firebase library"></a>安裝Firebase library</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2017/08/03/nodemcu-firebase/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/nodemcu_webserver/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -566,20 +892,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

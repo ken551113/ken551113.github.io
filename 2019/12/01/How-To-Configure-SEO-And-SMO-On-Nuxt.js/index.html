@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="使用Nuxt來製作網站，不外乎就是需要SEO、SMO的功能，而要怎麼在Nuxt中建立SEO需要的資訊呢？以一個一般網頁來看，只要在html的head標籤內埋入相對應的meta tag就可以完成基礎的設定，以下為基礎的SEO與Facebook SMO設定123456789&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;KenLee&amp;lt;&#x2F;title&amp;gt;&amp;lt;meta property=&quot;d">
+<meta name="keywords" content="SEO,Nuxt.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用PM2部署Nuxt.js專案">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;01&#x2F;How-To-Configure-SEO-And-SMO-On-Nuxt.js&#x2F;index.html">
+<meta property="og:site_name" content="KenLee">
+<meta property="og:description" content="使用Nuxt來製作網站，不外乎就是需要SEO、SMO的功能，而要怎麼在Nuxt中建立SEO需要的資訊呢？以一個一般網頁來看，只要在html的head標籤內埋入相對應的meta tag就可以完成基礎的設定，以下為基礎的SEO與Facebook SMO設定123456789&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;KenLee&amp;lt;&#x2F;title&amp;gt;&amp;lt;meta property=&quot;d">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-12-03T14:01:15.372Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/01/How-To-Configure-SEO-And-SMO-On-Nuxt.js/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>利用PM2部署Nuxt.js專案 | KenLee</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KenLee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/01/How-To-Configure-SEO-And-SMO-On-Nuxt.js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ken Lee">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KenLee">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          利用PM2部署Nuxt.js專案
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-01T00:00:00+08:00">2019-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-03 22:01:15" itemprop="dateModified" datetime="2019-12-03T22:01:15+08:00">2019-12-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Nuxt-js/" itemprop="url" rel="index">
+                    <span itemprop="name">Nuxt.js</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>使用Nuxt來製作網站，不外乎就是需要SEO、SMO的功能，而要怎麼在Nuxt中建立SEO需要的資訊呢？</p><p>以一個一般網頁來看，只要在html的head標籤內埋入相對應的meta tag就可以完成基礎的設定，以下為基礎的SEO與Facebook SMO設定</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>KenLee<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">property</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">"我的部落格"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">property</span>=<span class="string">"og:title"</span> <span class="attr">content</span>=<span class="string">"KenLee"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">property</span>=<span class="string">"og:description"</span> <span class="attr">content</span>=<span class="string">"我的部落格"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">property</span>=<span class="string">"og:image"</span> <span class="attr">content</span>=<span class="string">"https://ken551113.github.io/image.jpg"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">property</span>=<span class="string">"og:url"</span> <span class="attr">content</span>=<span class="string">"https://ken551113.github.io/"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">property</span>=<span class="string">"og:type"</span> <span class="attr">content</span>=<span class="string">"website"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+<h1 id="自定義Meta"><a href="#自定義Meta" class="headerlink" title="自定義Meta"></a>自定義Meta</h1><p>而在Nuxt中，分別有兩種方式讓你自訂你的meta tag：</p>
+<ol>
+<li>全域：透過nuxt.config.js，對整個網站的所有頁面做設定</li>
+<li>單頁：透過每個pages底下的vue中的head做設定，達到個別顯示的作用</li>
+</ol>
+<h2 id="全域"><a href="#全域" class="headerlink" title="全域"></a>全域</h2><p>在全域中的設定方法為</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  head: &#123;</span><br><span class="line">    title: &apos;KenLee&apos;,</span><br><span class="line">    meta: [</span><br><span class="line">      &#123; charset: &apos;utf-8&apos; &#125;,</span><br><span class="line">      &#123; hid: &apos;description&apos;, name: &apos;description&apos;, content: &apos;我的部落格&apos; &#125;,</span><br><span class="line">      &#123; hid: &apos;og:title&apos;  , property: &apos;og:title&apos;  , content: &apos;KenLee&apos;&#125;,</span><br><span class="line">      &#123; hid: &apos;og:description&apos; , property: &apos;og:description&apos; , content: &apos;我的部落格&apos;&#125;,</span><br><span class="line">      &#123; hid: &apos;og:url&apos; , property: &apos;og:url&apos; , content: &apos;https://ken551113.github.io/&apos;&#125;,</span><br><span class="line">      &#123; hid: &apos;og:image&apos; , property: &apos;og:image&apos; , content: &apos;https://ken551113.github.io/image.jpg&apos;&#125;,</span><br><span class="line">      &#123; hid: &apos;og:type&apos; , property: &apos;og:type&apos; , content: &apos;website&apos;&#125;,</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="單頁"><a href="#單頁" class="headerlink" title="單頁"></a>單頁</h2><p>在單頁設定方法為</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  head () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      title: &apos;KenLee&apos;,</span><br><span class="line">      meta: [</span><br><span class="line">          &#123; charset: &apos;utf-8&apos; &#125;,</span><br><span class="line">          &#123; hid: &apos;description&apos;, name: &apos;description&apos;, content: &apos;我的部落格&apos; &#125;,</span><br><span class="line">          &#123; hid: &apos;og:title&apos;  , property: &apos;og:title&apos;  , content: &apos;KenLee&apos;&#125;,</span><br><span class="line">          &#123; hid: &apos;og:description&apos; , property: &apos;og:description&apos; , content: &apos;我的部落格&apos;&#125;,</span><br><span class="line">          &#123; hid: &apos;og:url&apos; , property: &apos;og:url&apos; , content: &apos;https://ken551113.github.io/&apos;&#125;,</span><br><span class="line">          &#123; hid: &apos;og:image&apos; , property: &apos;og:image&apos; , content: &apos;https://ken551113.github.io/image.jpg&apos;&#125;,</span><br><span class="line">          &#123; hid: &apos;og:type&apos; , property: &apos;og:type&apos; , content: &apos;website&apos;&#125;,</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="避免重複的meta標籤"><a href="#避免重複的meta標籤" class="headerlink" title="避免重複的meta標籤"></a>避免重複的meta標籤</h1><p>為了解決meta重複的問題，Nuxt中則會多出一個hid的屬性，因為在一個頁面中若父組件與子組件同時存在meta時，則會造成一個頁面有許多重複的meta標籤，hid這個屬性就是用來為meta配一個為一個標誌編號，讓子組件中的meta值可以覆蓋父元件相同的hid值的meta</p>
+<p>如果在nuxt.config.js中設定了下面的meta</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">head: &#123;</span><br><span class="line">    title: &apos;starter&apos;,</span><br><span class="line">    meta: [</span><br><span class="line">      &#123; charset: &apos;utf-8&apos; &#125;,</span><br><span class="line">      &#123; name: &apos;viewport&apos;, content: &apos;width=device-width, initial-scale=1&apos; &#125;,</span><br><span class="line">      &#123; name: &apos;keywords&apos;, content: &apos;keyword 1, keyword 2&apos;&#125;,</span><br><span class="line">      &#123; hid: &apos;description&apos;, name: &apos;description&apos;, content: &apos;This is the generic description.&apos;&#125;</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<p>那在某頁面組件中就可以利用下面的設定將description從原本的<code>This is the generic description.</code>更改為<code>&#39;My custom description&#39;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  head () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      meta: [</span><br><span class="line">        &#123; hid: &apos;description&apos;, name: &apos;description&apos;, content: &apos;My custom description&apos; &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="SMO測試"><a href="#SMO測試" class="headerlink" title="SMO測試"></a>SMO測試</h1><p>最基本設定的SMO分別就是Facebook與Twitter，可以到這邊看兩者的meta標籤設定規範<br>Facebook : <a href="https://developers.facebook.com/docs/sharing/webmasters?locale=zh_TW" target="_blank" rel="noopener">https://developers.facebook.com/docs/sharing/webmasters?locale=zh_TW</a><br>Twitter : <a href="https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards" target="_blank" rel="noopener">https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards</a></p>
+<p>設定完之後facebook與twitter也有提供debug網站讓大家測試自己的meta是否有測試成功</p>
+<p>Facebook : <a href="https://developers.facebook.com/tools/debug/sharing/" target="_blank" rel="noopener">https://developers.facebook.com/tools/debug/sharing/</a><br>Twitter : <a href="https://cards-dev.twitter.com/validator" target="_blank" rel="noopener">https://cards-dev.twitter.com/validator</a></p>
+<p><a href="https://zh.nuxtjs.org/api/configuration-head/" target="_blank" rel="noopener">API: head 屬性配置</a><br><a href="https://zh.nuxtjs.org/api/pages-head" target="_blank" rel="noopener">API: head 方法</a><br><a href="https://ithelp.ithome.com.tw/articles/10204248" target="_blank" rel="noopener">Nuxt 客製《甜點電商》SEO 基本資訊</a><br><a href="https://zh.nuxtjs.org/faq/duplicated-meta-tags/" target="_blank" rel="noopener">重複的 Meta 標籤</a><br><a href="https://blog.hellosanta.com.tw/%E7%B6%B2%E7%AB%99%E8%A8%AD%E8%A8%88/%E5%89%8D%E7%AB%AF/%E6%83%B3%E8%A6%81%E4%BD%A0%E7%9A%84%E6%96%87%E7%AB%A0%E8%AE%93%E6%9B%B4%E5%A4%9A%E4%BD%BF%E7%94%A8%E8%80%85%E9%BB%9E%E9%96%B1%EF%BC%8Copne-graph%E4%BD%A0%E4%B8%8D%E8%83%BD%E4%B8%8D%E7%9F%A5%E9%81%93%EF%BC%81%EF%BC%81" target="_blank" rel="noopener">想要你的文章讓更多使用者點閱，Open graph你不能不知道！！</a><br><a href="https://2amigos.us/blog/how-to-build-a-seo-friendly-website-using-nuxtjs" target="_blank" rel="noopener">How to Build a SEO-friendly Website Using Nuxt.js</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SEO/" rel="tag"># SEO</a>
+              <a href="/tags/Nuxt-js/" rel="tag"># Nuxt.js</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/27/Using%20Axios%20On%20Nuxt.js/" rel="next" title="在Nuxt中使用Axios-基礎使用">
+                  <i class="fa fa-chevron-left"></i> 在Nuxt中使用Axios-基礎使用
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/12/02/Different-Ways-To-Change-The-WordPress-URL/" rel="prev" title="更改wordpress網址">
+                  更改wordpress網址 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定義Meta"><span class="nav-number">1.</span> <span class="nav-text">自定義Meta</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#全域"><span class="nav-number">1.1.</span> <span class="nav-text">全域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#單頁"><span class="nav-number">1.2.</span> <span class="nav-text">單頁</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#避免重複的meta標籤"><span class="nav-number">2.</span> <span class="nav-text">避免重複的meta標籤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SMO測試"><span class="nav-number">3.</span> <span class="nav-text">SMO測試</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ken Lee"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Ken Lee</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ken551113" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ken551113" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/ken.lee.522" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;ken.lee.522" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ken Lee</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

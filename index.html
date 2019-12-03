@@ -175,7 +175,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/26/Using-Vue-Awesome-Swiper-On-Nuxt/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/03/Using-PM2-To-Deploy-Nuxt.js-Project/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -189,7 +189,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/26/Using-Vue-Awesome-Swiper-On-Nuxt/" class="post-title-link" itemprop="url">在Nuxt中使用Vue Awesome Swiper</a>
+            <a href="/2019/12/03/Using-PM2-To-Deploy-Nuxt.js-Project/" class="post-title-link" itemprop="url">利用PM2部署Nuxt.js專案</a>
         </h1>
 
         <div class="post-meta">
@@ -200,7 +200,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2019-11-26 00:00:00 / Modified: 00:18:03" itemprop="dateCreated datePublished" datetime="2019-11-26T00:00:00+08:00">2019-11-26</time>
+              <time title="Created: 2019-12-03 00:00:00 / Modified: 22:01:25" itemprop="dateCreated datePublished" datetime="2019-12-03T00:00:00+08:00">2019-12-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -225,10 +225,259 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>今天試著把本來在spa專案中的vue awesome swiper放到nuxt上用，當初沒按照官方的路徑寫，因為我覺得我自己寫的也沒錯哈哈哈，走了很多彎路才成功，這邊來記錄一下</p><h1 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-awesome-swiper --save</span><br></pre></td></tr></table></figure><h1 id="加入pluging"><a href="#加入pluging" class="headerlink" title="加入pluging"></a>加入pluging</h1><p>在專案中的plugings資料夾建立一個vue-awesome-swiper.js的文件，並在裡面填入以下程式碼</p>
+          <p>Nuxt為vue的一個ssr框架，與spa不同的地方在於，spa只會輸出一個html檔案給使用者，讓使用者在前端獲取資料之後進行渲染，而Nuxt則是在使用者第一次request網頁的時候，在server端先獲取資料並渲染後再傳輸給使用者，所以Nuxt需要開發人員在主機端運行一個常駐的程式</p><p>Nuxt主要基於js，在架設js的後端時，我們常常會使用PM2來進行管理與運行，這篇主要是紀錄一下，怎麼快速方便的架設nuxt伺服器</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/11/26/Using-Vue-Awesome-Swiper-On-Nuxt/#more" rel="contents">
+              <a class="btn" href="/2019/12/03/Using-PM2-To-Deploy-Nuxt.js-Project/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/02/Different-Ways-To-Change-The-WordPress-URL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ken Lee">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KenLee">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/02/Different-Ways-To-Change-The-WordPress-URL/" class="post-title-link" itemprop="url">更改wordpress網址</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-02 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-02T00:00:00+08:00">2019-12-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-03 14:10:25" itemprop="dateModified" datetime="2019-12-03T14:10:25+08:00">2019-12-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/wordpress/" itemprop="url" rel="index">
+                    <span itemprop="name">wordpress</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>更改wordpress網址有三種方式：</p><h2 id="後台"><a href="#後台" class="headerlink" title="後台"></a>後台</h2><p>第一種是去後台管理介面更改，後台-&gt;設定-&gt;一般，可以看到裡面有兩個網址可以做設定，一個是wordpress網址，一個是網站網址，兩個一起做更改就好，如果這邊更改錯誤導致無法進入網站，可以透過下面另外兩種方式做處理</p><h2 id="wp-config-php"><a href="#wp-config-php" class="headerlink" title="wp-config.php"></a>wp-config.php</h2><p>第二種是透過wp-config設定文件去做修改，我比較偏向用這種方式，最為直接，也不需要操作到資料庫，如果是透過這種方法做修改，可以發現進入後台設定的時候，這邊的設定已經覆蓋掉原本的欄位，也無法再使用後台去修改網址</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/02/Different-Ways-To-Change-The-WordPress-URL/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/01/How-To-Configure-SEO-And-SMO-On-Nuxt.js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ken Lee">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KenLee">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/01/How-To-Configure-SEO-And-SMO-On-Nuxt.js/" class="post-title-link" itemprop="url">利用PM2部署Nuxt.js專案</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-01T00:00:00+08:00">2019-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-03 22:01:15" itemprop="dateModified" datetime="2019-12-03T22:01:15+08:00">2019-12-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Nuxt-js/" itemprop="url" rel="index">
+                    <span itemprop="name">Nuxt.js</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用Nuxt來製作網站，不外乎就是需要SEO、SMO的功能，而要怎麼在Nuxt中建立SEO需要的資訊呢？</p><p>以一個一般網頁來看，只要在html的head標籤內埋入相對應的meta tag就可以完成基礎的設定，以下為基礎的SEO與Facebook SMO設定</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>KenLee<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">property</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">"我的部落格"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">property</span>=<span class="string">"og:title"</span> <span class="attr">content</span>=<span class="string">"KenLee"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">property</span>=<span class="string">"og:description"</span> <span class="attr">content</span>=<span class="string">"我的部落格"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">property</span>=<span class="string">"og:image"</span> <span class="attr">content</span>=<span class="string">"https://ken551113.github.io/image.jpg"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">property</span>=<span class="string">"og:url"</span> <span class="attr">content</span>=<span class="string">"https://ken551113.github.io/"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">property</span>=<span class="string">"og:type"</span> <span class="attr">content</span>=<span class="string">"website"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/01/How-To-Configure-SEO-And-SMO-On-Nuxt.js/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/27/Using%20Axios%20On%20Nuxt.js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ken Lee">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KenLee">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/27/Using%20Axios%20On%20Nuxt.js/" class="post-title-link" itemprop="url">在Nuxt中使用Axios-基礎使用</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-27 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-27T00:00:00+08:00">2019-11-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-03 15:55:59" itemprop="dateModified" datetime="2019-12-03T15:55:59+08:00">2019-12-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Nuxt-js/" itemprop="url" rel="index">
+                    <span itemprop="name">Nuxt.js</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在Nuxt中額外提供了一個asyncData的屬性，讓服務器在渲染組件之前先異步獲取數據，也有以往會在Vue使用到的methods/created/mounted…等屬性，而非同步獲取數據又有Promise與ES7的 async/await兩種方法，這邊就來記錄一下在不同情境下的使用方法</p><h1 id="前置作業"><a href="#前置作業" class="headerlink" title="前置作業"></a>前置作業</h1><p>先安裝nuxt提供的axios</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/27/Using%20Axios%20On%20Nuxt.js/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -275,10 +524,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-11-26 00:00:00 / Modified: 00:18:06" itemprop="dateCreated datePublished" datetime="2019-11-26T00:00:00+08:00">2019-11-26</time>
+              <time title="Created: 2019-11-26 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-26T00:00:00+08:00">2019-11-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-03 15:56:10" itemprop="dateModified" datetime="2019-12-03T15:56:10+08:00">2019-12-03</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -306,6 +561,89 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/11/26/Using-Bootstrap-On-Nuxt/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/26/Using-Vue-Awesome-Swiper-On-Nuxt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ken Lee">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KenLee">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/26/Using-Vue-Awesome-Swiper-On-Nuxt/" class="post-title-link" itemprop="url">在Nuxt中使用Vue Awesome Swiper</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-26 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-26T00:00:00+08:00">2019-11-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-03 15:58:03" itemprop="dateModified" datetime="2019-12-03T15:58:03+08:00">2019-12-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Nuxt-js/" itemprop="url" rel="index">
+                    <span itemprop="name">Nuxt.js</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天試著把本來在spa專案中的vue awesome swiper放到nuxt上用，當初沒按照官方的路徑寫，因為我覺得我自己寫的也沒錯哈哈哈，走了很多彎路才成功，這邊來記錄一下</p><h1 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-awesome-swiper --save</span><br></pre></td></tr></table></figure><h1 id="加入pluging"><a href="#加入pluging" class="headerlink" title="加入pluging"></a>加入pluging</h1><p>在專案中的plugings資料夾建立一個vue-awesome-swiper.js的文件，並在裡面填入以下程式碼</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/26/Using-Vue-Awesome-Swiper-On-Nuxt/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -360,7 +698,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-26 00:18:07" itemprop="dateModified" datetime="2019-11-26T00:18:07+08:00">2019-11-26</time>
+                <time title="Modified: 2019-12-03 15:56:13" itemprop="dateModified" datetime="2019-12-03T15:56:13+08:00">2019-12-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -649,332 +987,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/17/MongoDB_backup/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Ken Lee">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KenLee">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/10/17/MongoDB_backup/" class="post-title-link" itemprop="url">MongoDB備份與還原</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2018-10-17 18:06:19 / Modified: 15:31:08" itemprop="dateCreated datePublished" datetime="2018-10-17T18:06:19+08:00">2018-10-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mongoDB/" itemprop="url" rel="index">
-                    <span itemprop="name">mongoDB</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="MongoDB備份與還原"><a href="#MongoDB備份與還原" class="headerlink" title="MongoDB備份與還原"></a>MongoDB備份與還原</h1><p>mongoDB內建了mongodump 與mongorestore備份與還原的功能，可以直接在命令列輸入指令就執行備份與還原，使用mongodump備份出來的資料跟mongodexport的不一樣，mongodexport匯出的檔案可以選擇是csv或者json，但mongodump出來的是二進位檔案，需要透過mongodb專用的GUI軟體，或者是匯入來查看</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/10/17/MongoDB_backup/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/16/MongoDB_auth/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Ken Lee">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KenLee">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/10/16/MongoDB_auth/" class="post-title-link" itemprop="url">開啟MongoDB認證權限</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-10-16 18:06:19" itemprop="dateCreated datePublished" datetime="2018-10-16T18:06:19+08:00">2018-10-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-10-17 15:30:59" itemprop="dateModified" datetime="2018-10-17T15:30:59+08:00">2018-10-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mongoDB/" itemprop="url" rel="index">
-                    <span itemprop="name">mongoDB</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="開啟MongoDB認證權限"><a href="#開啟MongoDB認證權限" class="headerlink" title="開啟MongoDB認證權限"></a>開啟MongoDB認證權限</h1><p>之前有發生過mongodb資料庫被勒索的新聞，主要是因為舊版的mongodb設定上是可以被任何人連接的，如果沒有設定資料庫權限，基本上任何人只要知道資料庫的ip位置，就可以入侵。</p><p>新版的mongodb已經把漏洞補上，預設只有內網才能連接上，但就不能從外部連接進去，所以還是得手動更改讓外部也可以連接，並且加上資料庫權限，避免被攻擊。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/10/16/MongoDB_auth/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/install_nginx/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Ken Lee">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KenLee">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/10/15/install_nginx/" class="post-title-link" itemprop="url">Nginx的安裝與基本操作</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-10-15 18:06:19" itemprop="dateCreated datePublished" datetime="2018-10-15T18:06:19+08:00">2018-10-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-10-17 15:33:36" itemprop="dateModified" datetime="2018-10-17T15:33:36+08:00">2018-10-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">Nginx</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Nginx的安裝與基本操作"><a href="#Nginx的安裝與基本操作" class="headerlink" title="Nginx的安裝與基本操作"></a>Nginx的安裝與基本操作</h1><p>system:<br> ubuntu 16.04</p><h2 id="安裝nginx"><a href="#安裝nginx" class="headerlink" title="安裝nginx"></a>安裝nginx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install nginx</span><br></pre></td></tr></table></figure><p>安裝完後可以查看nginx的狀況</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status nginx</span><br></pre></td></tr></table></figure><p>如果狀態是active，那就表示nginx服務成功運行</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/10/15/install_nginx/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/MongoDB_export_CSV/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Ken Lee">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KenLee">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/10/15/MongoDB_export_CSV/" class="post-title-link" itemprop="url">MongoDB匯出CSV</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-10-15 18:06:19" itemprop="dateCreated datePublished" datetime="2018-10-15T18:06:19+08:00">2018-10-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-10-17 15:28:25" itemprop="dateModified" datetime="2018-10-17T15:28:25+08:00">2018-10-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mongoDB/" itemprop="url" rel="index">
-                    <span itemprop="name">mongoDB</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="MongoDB匯出CSV"><a href="#MongoDB匯出CSV" class="headerlink" title="MongoDB匯出CSV"></a>MongoDB匯出CSV</h1><p>MongoDB有內建mongoexport來輸出csv檔，但輸出csv要指定欄位才可以順利輸出</p><p>假設在本地端有一個資料庫是名字是customer，collection是users，目前裡面有一筆資料</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;ken&quot;,</span><br><span class="line">    &quot;age&quot;: &quot;25&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/10/15/MongoDB_export_CSV/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1025,20 +1037,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="更改wordpress網址有三種方式：後台第一種是去後台管理介面更改，後台-&amp;gt;設定-&amp;gt;一般，可以看到裡面有兩個網址可以做設定，一個是wordpress網址，一個是網站網址，兩個一起做更改就好，如果這邊更改錯誤導致無法進入網站，可以透過下面另外兩種方式做處理wp-config.php第二種是透過wp-config設定文件去做修改，我比較偏向用這種方式，最為直接，也不需要操作到資料庫，如果">
+<meta name="keywords" content="wordpress,MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="更改wordpress網址">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;02&#x2F;Different-Ways-To-Change-The-WordPress-URL&#x2F;index.html">
+<meta property="og:site_name" content="KenLee">
+<meta property="og:description" content="更改wordpress網址有三種方式：後台第一種是去後台管理介面更改，後台-&amp;gt;設定-&amp;gt;一般，可以看到裡面有兩個網址可以做設定，一個是wordpress網址，一個是網站網址，兩個一起做更改就好，如果這邊更改錯誤導致無法進入網站，可以透過下面另外兩種方式做處理wp-config.php第二種是透過wp-config設定文件去做修改，我比較偏向用這種方式，最為直接，也不需要操作到資料庫，如果">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-12-03T06:10:25.044Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/02/Different-Ways-To-Change-The-WordPress-URL/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>更改wordpress網址 | KenLee</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KenLee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/02/Different-Ways-To-Change-The-WordPress-URL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ken Lee">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KenLee">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          更改wordpress網址
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-02 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-02T00:00:00+08:00">2019-12-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-03 14:10:25" itemprop="dateModified" datetime="2019-12-03T14:10:25+08:00">2019-12-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/wordpress/" itemprop="url" rel="index">
+                    <span itemprop="name">wordpress</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>更改wordpress網址有三種方式：</p><h2 id="後台"><a href="#後台" class="headerlink" title="後台"></a>後台</h2><p>第一種是去後台管理介面更改，後台-&gt;設定-&gt;一般，可以看到裡面有兩個網址可以做設定，一個是wordpress網址，一個是網站網址，兩個一起做更改就好，如果這邊更改錯誤導致無法進入網站，可以透過下面另外兩種方式做處理</p><h2 id="wp-config-php"><a href="#wp-config-php" class="headerlink" title="wp-config.php"></a>wp-config.php</h2><p>第二種是透過wp-config設定文件去做修改，我比較偏向用這種方式，最為直接，也不需要操作到資料庫，如果是透過這種方法做修改，可以發現進入後台設定的時候，這邊的設定已經覆蓋掉原本的欄位，也無法再使用後台去修改網址</p><a id="more"></a>
+
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="string">'WP_HOME'</span>,<span class="string">'https://www.wpadmin.mutienliao.com'</span>);</span><br><span class="line">define(<span class="string">'WP_SITEURL'</span>,<span class="string">'https://www.wpadmin.mutienliao.com'</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="資料庫"><a href="#資料庫" class="headerlink" title="資料庫"></a>資料庫</h2><p>第三種是透過修改資料庫的方式，首先透過command line 進入 MySQL的操作介面，接著進入wordpress所使用的資料庫，再輸入update指令更新在資料庫裡面的網址設定</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -uroot -p     <span class="comment">#登入管理帳戶</span></span><br><span class="line">mysql&gt;use wordpress;    <span class="comment">#切換到wordpress数据库</span></span><br><span class="line">mysql&gt;UPDATE wp_options SET option_value = replace(option_value, <span class="string">'https://舊網址'</span>, <span class="string">'https://新網址'</span>) WHERE option_name = <span class="string">'home'</span> OR option_name = <span class="string">'siteurl'</span>; <span class="comment">#更新網址</span></span><br><span class="line">mysql&gt;<span class="built_in">exit</span> <span class="comment">#離開</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="問題處理"><a href="#問題處理" class="headerlink" title="問題處理"></a>問題處理</h1><p>如果更新完網址之後，發現很多文章裡面的圖片跑不出來，那是我們更改的指示預設欄位的網址，有些佈景的post meta不會做更新，我們可以透過自己操作資料庫的方式進行處理</p>
+<p>這邊跟上面更改資料庫一樣，先透過command line進入資料庫操作介面，在進行操作就好</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -uroot -p     #登入管理帳戶</span><br><span class="line">mysql&gt;use wordpress;    #切換到wordpress数据库</span><br><span class="line">UPDATE wp_options SET option_value = replace(option_value, &apos;http://舊網址&apos;, &apos;http://新網址&apos;) WHERE option_name = &apos;home&apos; OR option_name = &apos;siteurl&apos;;</span><br><span class="line">UPDATE wp_posts SET guid = replace(guid, &apos;http://舊網址&apos;,&apos;http://新網址&apos;);</span><br><span class="line">UPDATE wp_posts SET post_content = replace(post_content, &apos;http://舊網址&apos;, &apos;http://新網址&apos;);</span><br><span class="line">UPDATE wp_postmeta SET meta_value = replace(meta_value,&apos;http://舊網址&apos;,&apos;http://新網址&apos;);</span><br><span class="line">mysql&gt;exit #離開</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://blog.jimmmmy.com/2015/07/26/wordpress-change-url/" target="_blank" rel="noopener">解決WordPress改網址後圖片出不來的問題</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/wordpress/" rel="tag"># wordpress</a>
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/12/01/How-To-Configure-SEO-And-SMO-On-Nuxt.js/" rel="next" title="利用PM2部署Nuxt.js專案">
+                  <i class="fa fa-chevron-left"></i> 利用PM2部署Nuxt.js專案
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/12/03/Using-PM2-To-Deploy-Nuxt.js-Project/" rel="prev" title="利用PM2部署Nuxt.js專案">
+                  利用PM2部署Nuxt.js專案 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#後台"><span class="nav-number">1.</span> <span class="nav-text">後台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wp-config-php"><span class="nav-number">2.</span> <span class="nav-text">wp-config.php</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#資料庫"><span class="nav-number">3.</span> <span class="nav-text">資料庫</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#問題處理"><span class="nav-number"></span> <span class="nav-text">問題處理</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ken Lee"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Ken Lee</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ken551113" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ken551113" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/ken.lee.522" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;ken.lee.522" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ken Lee</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

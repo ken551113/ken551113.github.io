@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="在Nuxt中額外提供了一個asyncData的屬性，讓服務器在渲染組件之前先異步獲取數據，也有以往會在Vue使用到的methods&#x2F;created&#x2F;mounted…等屬性，而非同步獲取數據又有Promise與ES7的 async&#x2F;await兩種方法，這邊就來記錄一下在不同情境下的使用方法前置作業先安裝nuxt提供的axios">
+<meta name="keywords" content="Nuxt.js,Axios">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Nuxt中使用Axios-基礎使用">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;27&#x2F;Using%20Axios%20On%20Nuxt.js&#x2F;index.html">
+<meta property="og:site_name" content="KenLee">
+<meta property="og:description" content="在Nuxt中額外提供了一個asyncData的屬性，讓服務器在渲染組件之前先異步獲取數據，也有以往會在Vue使用到的methods&#x2F;created&#x2F;mounted…等屬性，而非同步獲取數據又有Promise與ES7的 async&#x2F;await兩種方法，這邊就來記錄一下在不同情境下的使用方法前置作業先安裝nuxt提供的axios">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-12-03T07:55:59.918Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/11/27/Using%20Axios%20On%20Nuxt.js/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>在Nuxt中使用Axios-基礎使用 | KenLee</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KenLee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/27/Using%20Axios%20On%20Nuxt.js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ken Lee">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KenLee">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在Nuxt中使用Axios-基礎使用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-27 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-27T00:00:00+08:00">2019-11-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-03 15:55:59" itemprop="dateModified" datetime="2019-12-03T15:55:59+08:00">2019-12-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Nuxt-js/" itemprop="url" rel="index">
+                    <span itemprop="name">Nuxt.js</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在Nuxt中額外提供了一個asyncData的屬性，讓服務器在渲染組件之前先異步獲取數據，也有以往會在Vue使用到的methods/created/mounted…等屬性，而非同步獲取數據又有Promise與ES7的 async/await兩種方法，這邊就來記錄一下在不同情境下的使用方法</p><h1 id="前置作業"><a href="#前置作業" class="headerlink" title="前置作業"></a>前置作業</h1><p>先安裝nuxt提供的axios</p><a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @nuxtjs/axios</span><br></pre></td></tr></table></figure>
+
+<p>接著在nuxt.config.js中設定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  modules: [</span><br><span class="line">    &apos;@nuxtjs/axios&apos;,</span><br><span class="line">  ],</span><br><span class="line"></span><br><span class="line">  axios: &#123;</span><br><span class="line">    // proxyHeaders: false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="AsyncData"><a href="#AsyncData" class="headerlink" title="AsyncData"></a>AsyncData</h1><p>asyncData方法只會在 page component每次被加載前調用<br>在server-side 只有在請求網頁的時候被調用<br>在client-side時只有在路由更新時會被調用<br>而這個方法會接收一個context的物件當成第一個參數<br>也因為他是在component被加載前調用，所以要注意在asyncData裡面不能使用this</p>
+<p>在asyncData中return的數據會直接取代data中的數據，然後再渲染到畫面上</p>
+<h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><p>下面是利用在asyncData屬性中利用Promise來非同步獲取數據的範例，可以看到asyncData裡面帶了一個<code>$axios</code>，而為什麼要帶一個<code>$axios</code>，是因為asyncData會帶一個context的參數，context參數裡面有一個包含所有pulgins的Vue根實例，如果想獲取<code>$axios</code>就可以在方法裡面用<code>context.app.$axios</code>來獲取，這邊直接利用<code>{$axios}</code>來解構賦值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">asyncData(&#123; $axios &#125;) &#123;</span><br><span class="line">    const api = `https://dog.ceo/api/breeds/image/random`;</span><br><span class="line">    return $axios.get(api).then(respons =&gt;&#123;</span><br><span class="line">        console.log(respons);</span><br><span class="line">        let image = respons.data.message;</span><br><span class="line">        return&#123;image&#125;;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Async-Await"><a href="#Async-Await" class="headerlink" title="Async/Await"></a>Async/Await</h2><p>基本上只是把Promise的用法改成使用Async/Await，但有些不同的是，在<code>$axios</code>後面的方法本來是<code>get</code>，要改成<code>$get</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">async asyncData(&#123; $axios &#125;) &#123;</span><br><span class="line">    try&#123;</span><br><span class="line">        const respons = await $axios.$get(&apos;https://dog.ceo/api/breeds/image/random&apos;);</span><br><span class="line">        let image = respons.message;</span><br><span class="line">        return&#123;image&#125;;</span><br><span class="line">    &#125;catch(err)&#123;</span><br><span class="line">        console.log(err);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="methods-created-mounted…"><a href="#methods-created-mounted…" class="headerlink" title="methods/created/mounted…"></a>methods/created/mounted…</h1><p>跟前面的asyncData不同，methods、created等屬性，它們沒有context的物件當成默認參數，是在元件加載之後才會呼叫，所以可以使用this。<br>因為跟asyncData不同，所以呼叫使用axios的方法也不同，下面範例會以在methods中的情境來示範</p>
+<h2 id="Promise-1"><a href="#Promise-1" class="headerlink" title="Promise"></a>Promise</h2><p>這邊可以看到直接在方法裡面透過this就可以呼叫<code>$axios</code>了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    getDogImage() &#123;</span><br><span class="line">        const api = `https://dog.ceo/api/breeds/image/random`;</span><br><span class="line">        this.$axios.get(api).then(respons =&gt; &#123;</span><br><span class="line">            this.image = respons.data.message</span><br><span class="line">          &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Async-Await-1"><a href="#Async-Await-1" class="headerlink" title="Async/Await"></a>Async/Await</h2><p>這邊就大同小異，一樣是可以透過this來呼叫<code>$axios</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    async getDogImage() &#123;</span><br><span class="line">        try&#123;</span><br><span class="line">            const api = `https://dog.ceo/api/breeds/image/random`;</span><br><span class="line">            const respons = await vm.$axios.$get(api);</span><br><span class="line">            this.image = respons.message</span><br><span class="line">        &#125;catch(err)&#123;</span><br><span class="line">        console.log(err);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://dog.ceo/dog-api/" target="_blank" rel="noopener">Dog API</a><br><a href="https://zh.nuxtjs.org/api/context/" target="_blank" rel="noopener">Nuxt-Context</a><br><a href="https://www.jianshu.com/p/7d105f3e28f1" target="_blank" rel="noopener">安全，輕鬆的Axios與Nuxt.js集成</a><br><a href="https://www.cnblogs.com/cckui/p/10444246.html" target="_blank" rel="noopener">vue 中使用 async/await 將 axios 異步請求同步化處理</a><br><a href="https://www.oxxostudio.tw/articles/201908/js-async-await.html" target="_blank" rel="noopener">簡單理解 JavaScript Async 和 Await</a><br><a href="https://axios.nuxtjs.org/" target="_blank" rel="noopener">nuxt-axios</a><br><a href="http://menvscode.com/detail/5cdb7fc8ae497f2f42a28cec" target="_blank" rel="noopener">Nuxt.js 中 asyncData 使用方法介紹</a><br><a href="https://zhuanlan.zhihu.com/p/75864109" target="_blank" rel="noopener">NuxtJS 通過 2種方式引入axios進行異步數據請求</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Nuxt-js/" rel="tag"># Nuxt.js</a>
+              <a href="/tags/Axios/" rel="tag"># Axios</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/26/Using-Bootstrap-On-Nuxt/" rel="next" title="在Nuxt中使用bootstrap 4 與 jQuery">
+                  <i class="fa fa-chevron-left"></i> 在Nuxt中使用bootstrap 4 與 jQuery
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/12/01/How-To-Configure-SEO-And-SMO-On-Nuxt.js/" rel="prev" title="利用PM2部署Nuxt.js專案">
+                  利用PM2部署Nuxt.js專案 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前置作業"><span class="nav-number">1.</span> <span class="nav-text">前置作業</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AsyncData"><span class="nav-number">2.</span> <span class="nav-text">AsyncData</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise"><span class="nav-number">2.1.</span> <span class="nav-text">Promise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Async-Await"><span class="nav-number">2.2.</span> <span class="nav-text">Async/Await</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#methods-created-mounted…"><span class="nav-number">3.</span> <span class="nav-text">methods/created/mounted…</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise-1"><span class="nav-number">3.1.</span> <span class="nav-text">Promise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Async-Await-1"><span class="nav-number">3.2.</span> <span class="nav-text">Async/Await</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ken Lee"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Ken Lee</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ken551113" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ken551113" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/ken.lee.522" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;ken.lee.522" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ken Lee</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
