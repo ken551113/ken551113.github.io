@@ -45,18 +45,20 @@
   };
 </script>
 
-  <meta name="description" content="語法縮寫123var double = function(x)&amp;#123;    return x*2&amp;#125;123var double = (x) =&amp;gt;&amp;#123;    return x*2&amp;#125;當只有一個參數時，可省略括號123var double = x =&amp;gt;&amp;#123;    return x*2&amp;#125;">
-<meta name="keywords" content="ES6,javascript">
+  <meta name="description" content="最近將一個vue的專案轉成nuxt，其中有一個頁面是需要用到巢狀路由的，因為nuxt的router會自動生成，所以跟vue自己手動撰寫又有不同，所以這邊來記錄一下怎麼在nuxt中實現巢狀路由產生路由首先這個頁面為最新消息的頁面，左側會有選單列表，右側則是會顯示文章列表，點擊後會轉為顯示點擊的文章，由下圖可知，裡面會動的只有藍色的部分">
+<meta name="keywords" content="Nuxt.js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ES6-箭頭函式">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2018&#x2F;03&#x2F;12&#x2F;ES6_arrow_function&#x2F;index.html">
+<meta property="og:title" content="Nuxt 巢狀路由">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;04&#x2F;Nuxt.js-Nest-Router&#x2F;index.html">
 <meta property="og:site_name" content="KenLee">
-<meta property="og:description" content="語法縮寫123var double = function(x)&amp;#123;    return x*2&amp;#125;123var double = (x) =&amp;gt;&amp;#123;    return x*2&amp;#125;當只有一個參數時，可省略括號123var double = x =&amp;gt;&amp;#123;    return x*2&amp;#125;">
+<meta property="og:description" content="最近將一個vue的專案轉成nuxt，其中有一個頁面是需要用到巢狀路由的，因為nuxt的router會自動生成，所以跟vue自己手動撰寫又有不同，所以這邊來記錄一下怎麼在nuxt中實現巢狀路由產生路由首先這個頁面為最新消息的頁面，左側會有選單列表，右側則是會顯示文章列表，點擊後會轉為顯示點擊的文章，由下圖可知，裡面會動的只有藍色的部分">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2018-03-12T11:52:42.320Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;7Q9URCL.png">
+<meta property="og:updated_time" content="2019-12-04T13:33:28.071Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;7Q9URCL.png">
 
-<link rel="canonical" href="http://yoursite.com/2018/03/12/ES6_arrow_function/">
+<link rel="canonical" href="http://yoursite.com/2019/12/04/Nuxt.js-Nest-Router/">
 
 
 <script id="page-configurations">
@@ -70,7 +72,7 @@
   };
 </script>
 
-  <title>ES6-箭頭函式 | KenLee</title>
+  <title>Nuxt 巢狀路由 | KenLee</title>
   
 
 
@@ -179,7 +181,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/12/ES6_arrow_function/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/04/Nuxt.js-Nest-Router/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -192,7 +194,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          ES6-箭頭函式
+          Nuxt 巢狀路由
         </h1>
 
         <div class="post-meta">
@@ -203,7 +205,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2018-03-12 18:04:04 / Modified: 19:52:42" itemprop="dateCreated datePublished" datetime="2018-03-12T18:04:04+08:00">2018-03-12</time>
+              <time title="Created: 2019-12-04 00:00:00 / Modified: 21:33:28" itemprop="dateCreated datePublished" datetime="2019-12-04T00:00:00+08:00">2019-12-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -211,8 +213,8 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/Nuxt-js/" itemprop="url" rel="index">
+                    <span itemprop="name">Nuxt.js</span>
                   </a>
                 </span>
             </span>
@@ -228,22 +230,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="語法縮寫"><a href="#語法縮寫" class="headerlink" title="語法縮寫"></a>語法縮寫</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x*<span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> double = <span class="function">(<span class="params">x</span>) =&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x*<span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>當只有一個參數時，可省略括號</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="params">x</span> =&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x*<span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
+        <p>最近將一個vue的專案轉成nuxt，其中有一個頁面是需要用到巢狀路由的，因為nuxt的router會自動生成，所以跟vue自己手動撰寫又有不同，所以這邊來記錄一下怎麼在nuxt中實現巢狀路由</p><h1 id="產生路由"><a href="#產生路由" class="headerlink" title="產生路由"></a>產生路由</h1><p>首先這個頁面為最新消息的頁面，左側會有選單列表，右側則是會顯示文章列表，點擊後會轉為顯示點擊的文章，由下圖可知，裡面會動的只有藍色的部分<br><img src="https://i.imgur.com/7Q9URCL.png" alt="Screen Shot 2019-12-04 at 5.39.36 P"></p><a id="more"></a>
 
+<p>在路由的設定上，因為nuxt會根據pages的檔案自動產生路由設定，所以我們這邊就來規劃pages的檔案，首先是News.vue這個頁面元件，代表的就是淺綠色與桃紅色這一塊，再新增一個與News頁面元件相同名稱的News資料夾，在裡面的檔案將會產生News這個頁面元件底下的子路由，也就是nuxt-child</p>
+<p>News資料夾裡面分別新增了兩個頁面元件，一個是index.vue，一個是_id.vue，index.vue為進入News這個路由後預設顯示的頁面元件，_id.vue則為我們點擊個別文章之後，顯示出來的文章內容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-/pages/</span><br><span class="line">---/News.vue</span><br><span class="line">---/News/</span><br><span class="line">------/index.vue</span><br><span class="line">------/_id.vue</span><br></pre></td></tr></table></figure>
 
+<p>此時可以打開專案資料夾下的.nuxt/router.js，這邊為nuxt的路由設定檔，可以看到已經自動產生了以下內容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">router: &#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">        path: &quot;/News&quot;,</span><br><span class="line">        component: _c900ab0a,  </span><br><span class="line">        children: [&#123;</span><br><span class="line">          path: &quot;&quot;,</span><br><span class="line">          component: _220328be,</span><br><span class="line">          name: &quot;News&quot;</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          path: &quot;:id&quot;,</span><br><span class="line">          component: _8dbf7ab4,</span><br><span class="line">          name: &quot;News-id&quot;</span><br><span class="line">        &#125;]</span><br><span class="line">     &#125;, </span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>當回傳的內容只有一行時</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="params">x</span> =&gt;</span>x*<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h1 id="頁面元件撰寫"><a href="#頁面元件撰寫" class="headerlink" title="頁面元件撰寫"></a>頁面元件撰寫</h1><p>接著我們來一個一個看這些頁面元件的內容</p>
+<p>1.News.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;h2&gt;選單&lt;/h2&gt;</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">            &lt;li&gt;&lt;nuxt-link to=&apos;/news/112&apos;&gt;文章一&lt;/nuxt-link&gt;&lt;/li&gt;</span><br><span class="line">            &lt;li&gt;&lt;nuxt-link to=&apos;/news/113&apos;&gt;文章二&lt;/nuxt-link&gt;&lt;/li&gt;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">        &lt;hr&gt;</span><br><span class="line">        &lt;div class=&quot;article&quot;&gt;</span><br><span class="line">            &lt;nuxt-child keep-alive&gt;&lt;/nuxt-child&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<p>2.index.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div class=&quot;aritcle-list&quot;&gt;</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">            &lt;li&gt;&lt;nuxt-link to=&apos;/news/112&apos;&gt;文章一&lt;/nuxt-link&gt;&lt;/li&gt;</span><br><span class="line">            &lt;li&gt;&lt;nuxt-link to=&apos;/news/113&apos;&gt;文章二&lt;/nuxt-link&gt;&lt;/li&gt;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.map(<span class="function"><span class="keyword">function</span>(<span class="params"> elm, idx</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> elm+idx;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>3._id.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;h2&gt;this.$route.params.id&lt;/h2&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.map(<span class="function">(<span class="params"> elm, idx</span>) =&gt;</span> elm+idx )</span><br></pre></td></tr></table></figure>
-
-<h1 id="this的自動綁定"><a href="#this的自動綁定" class="headerlink" title="this的自動綁定"></a>this的自動綁定</h1><p>箭頭函式內部的this將與外部相同</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">b=&#123;<span class="attr">x</span>:<span class="number">5</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a=<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+<p>這樣就可以在News頁面元件中，透過nuxt-link去對nuxt-chlid作切換</p>
+<p><a href="https://www.itread01.com/content/1544781364.html" target="_blank" rel="noopener">Nuxt 巢狀路由nuxt-child元件（父子頁面元件的傳值）</a><br><a href="https://ithelp.ithome.com.tw/articles/10208358" target="_blank" rel="noopener">Nuxt Routing 進階 - 巢狀路由/嵌套路由 (Nested Routes)</a></p>
 
     </div>
 
@@ -253,25 +259,21 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/ES6/" rel="tag"># ES6</a>
-              <a href="/tags/javascript/" rel="tag"># javascript</a>
+              <a href="/tags/Nuxt-js/" rel="tag"># Nuxt.js</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2018/03/12/ES6_shorthand/" rel="next" title="ES6-shorthand">
-                  <i class="fa fa-chevron-left"></i> ES6-shorthand
+                <a href="/2019/12/03/Using-PM2-To-Deploy-Nuxt.js-Project/" rel="next" title="利用PM2部署Nuxt.js專案">
+                  <i class="fa fa-chevron-left"></i> 利用PM2部署Nuxt.js專案
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2018/03/12/ES6_Destructuring_Assignment/" rel="prev" title="ES6-解構賦值">
-                  ES6-解構賦值 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -310,7 +312,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#語法縮寫"><span class="nav-number">1.</span> <span class="nav-text">語法縮寫</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#this的自動綁定"><span class="nav-number">2.</span> <span class="nav-text">this的自動綁定</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#產生路由"><span class="nav-number">1.</span> <span class="nav-text">產生路由</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#頁面元件撰寫"><span class="nav-number">2.</span> <span class="nav-text">頁面元件撰寫</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
